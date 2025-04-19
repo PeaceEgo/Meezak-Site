@@ -155,12 +155,12 @@ export default function ServicesSection() {
                                         <div
                                             className="absolute"
                                             style={{
-                                                bottom: "-50px",
-                                                right: "-50px",
+                                                bottom: "100px",
+                                                right: "-100px",
                                                 width: "200px",
                                                 height: "200px",
-                                                background: "linear-gradient(135deg, #5807BF))",
-                                                borderRadius: "100px",
+                                                background: "linear-gradient(135deg, #5807BF)",
+                                                // borderRadius: "100px",
                                                 filter: "blur(40px)",
                                                 opacity: "0.6",
                                                 zIndex: "1",
@@ -226,9 +226,9 @@ export default function ServicesSection() {
                                         width: "250px",
                                         height: "250px",
                                         background: "linear-gradient(135deg, rgba(88, 7, 191, 0.7), rgba(41, 3, 89, 0.7))",
-                                        borderRadius: "100px",
+                                        // borderRadius: "100px",
                                         filter: "blur(40px)",
-                                        opacity: "1.5",
+                                        opacity: "1",
                                       
                                     }}
                                 />

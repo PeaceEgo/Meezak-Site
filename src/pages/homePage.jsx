@@ -1,11 +1,16 @@
+import FAQAccordion from "../components/faqAccordion"
 import ServicesSection from "../components/servicesSect"
+import WhyChooseUs from "../components/whyChoose"
 
-function homePage() {
+
+function HomePage() {
   return (
-    <div>
+    <div className="w-full h-[100%] bg-[ #EEEEEE]"> 
           <ServicesSection/>
+          <WhyChooseUs/>
+          <FAQAccordion/>
     </div>
   )
 }
 
-export default homePage
+export default HomePage

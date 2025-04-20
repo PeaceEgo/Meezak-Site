@@ -4,6 +4,7 @@ import TrustedLogos from '../components/TrustedLogos';
 import FAQAccordion from "../components/faqAccordion"
 import ServicesSection from "../components/servicesSect"
 import WhyChooseUs from "../components/whyChoose"
+import GetStarted from "../components/GetStarted"
 
 
 function HomePage() {
@@ -15,6 +16,7 @@ function HomePage() {
           <ServicesSection/>
           <WhyChooseUs/>
           <FAQAccordion/>
+          <GetStarted/>
     </div>
   )
 }

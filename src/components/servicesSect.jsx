@@ -81,7 +81,7 @@ export default function ServicesSection() {
     const renderServiceCard = (service, index) => (
         <div
             key={index}
-            className="relative overflow-hidden transition-transform hover:scale-105"
+            className="relative overflow-hidden"
             style={{
                 width: "392px",
                 height: "242px",

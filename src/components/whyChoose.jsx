@@ -59,7 +59,7 @@ function Card({ title, description, bgColor, textColor, icon }) {
 
 export default function WhyChooseUs() {
     return (
-        <div className="w-full px-4 py-12 bg-[#5166B108]">
+        <div className="w-[100vw] px-4 py-12 bg-white">
             <div className="text-center mb-10">
                 <div className="inline-block mb-4">
                     <span
@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
                 </p>
             </div>
 
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-6xl mx-auto">
 
                 {/* Card 1 */}
                 <div className="md:col-span-7">

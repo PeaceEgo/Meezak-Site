@@ -12,7 +12,7 @@ import GetStarted from "../components/GetStarted"
 function HomePage() {
   return (
    
-      <div className=" w-[100vw] overflow-hidden"> 
+    <div className="w-[100vw] overflow-hidden"> 
           <Header/>
           <Hero/>
           <TrustedLogos/>

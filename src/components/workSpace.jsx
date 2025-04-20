@@ -114,8 +114,8 @@ export default function WorkspaceGallery() {
     }, [])
 
     return (
-        <div className="bg-white py-16 px-4 md:px-8 max-w-7xl mx-auto">
-            <div className="max-w-7xl mx-auto">
+        <div className=" bg-white py-16 px-4 md:px-8 max-w-6xl mx-auto">
+            <div>
                
                 <div className="mb-4 flex justify-center items-center">
                     <span
@@ -149,7 +149,7 @@ export default function WorkspaceGallery() {
                     {workspaceImages.map((image) => (
                         <div key={image.id} className="min-w-[85%] snap-center">
                             <img
-                                src={image.src || "/placeholder.svg"}
+                                src={image.src}
                                 alt={image.alt}
                                 className="w-full h-64 object-cover rounded-lg"
                             />
@@ -157,10 +157,10 @@ export default function WorkspaceGallery() {
                     ))}
                 </div>
 
-                <div className="hidden md:grid lg:hidden grid-cols-2 gap-4">
+                <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 ">
                     {workspaceImages.map((image) => (
                         <div key={image.id} className="overflow-hidden rounded-lg">
-                            <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-64 object-cover" />
+                            <img src={image.src} alt={image.alt} className="w-full h-64 object-cover" />
                         </div>
                     ))}
                 </div>
@@ -169,21 +169,21 @@ export default function WorkspaceGallery() {
                     
                     <div className="col-span-4 row-span-1">
                         <img
-                            src={workspaceImages[0].src || "/placeholder.svg"}
+                            src={workspaceImages[0].src }
                             alt={workspaceImages[0].alt}
                             className="w-full h-full object-cover rounded-lg"
                         />
                     </div>
                     <div className="col-span-4 row-span-2">
                         <img
-                            src={workspaceImages[1].src || "/placeholder.svg"}
+                            src={workspaceImages[1].src }
                             alt={workspaceImages[1].alt}
                             className="w-full h-full object-cover rounded-lg"
                         />
                     </div>
                     <div className="col-span-4 row-span-1">
                         <img
-                            src={workspaceImages[2].src || "/placeholder.svg"}
+                            src={workspaceImages[2].src }
                             alt={workspaceImages[2].alt}
                             className="w-full h-full object-cover rounded-lg"
                         />
@@ -191,21 +191,21 @@ export default function WorkspaceGallery() {
 
                     <div className="col-span-2 row-span-1">
                         <img
-                            src={workspaceImages[3].src || "/placeholder.svg"}
+                            src={workspaceImages[3].src }
                             alt={workspaceImages[3].alt}
                             className="w-full h-full object-cover rounded-lg"
                         />
                     </div>
                     <div className="col-span-2 row-span-1">
                         <img
-                            src={workspaceImages[4].src || "/placeholder.svg"}
+                            src={workspaceImages[4].src }
                             alt={workspaceImages[4].alt}
                             className="w-full h-full object-cover rounded-lg"
                         />
                     </div>
                     <div className="col-span-4 row-span-1">
                         <img
-                            src={workspaceImages[5].src || "/placeholder.svg"}
+                            src={workspaceImages[5].src }
                             alt={workspaceImages[5].alt}
                             className="w-full h-full object-cover rounded-lg"
                         />

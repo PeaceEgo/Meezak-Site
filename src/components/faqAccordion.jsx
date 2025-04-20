@@ -1,10 +1,11 @@
-"use client"
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "./ui/accordion";
+import RightImage from "../assets/faq.svg";
 
-import { useState } from "react"
-import { ChevronUp, ChevronDown } from "lucide-react"
-import RightImage from "../assets/faq.svg"
-
-// FAQ data
 const faqData = [
     {
         question: "I have an idea of an App, But I don't know what to do?",
@@ -36,63 +37,56 @@ const faqData = [
         answer:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     },
-]
+];
 
 export default function FAQAccordion() {
-    const [openIndex, setOpenIndex] = useState(0)
-
-    const toggleAccordion = (index) => {
-        setOpenIndex(openIndex === index ? null : index)
-    }
-
     return (
-        <div className="bg-white py-16 px-4 md:px-8">
+        <div className="py-16 px-4 md:px-8" style={{ backgroundColor: "#F5F6F5" }}>
             <div className="max-w-7xl mx-auto">
-                {/* Small FAQs title */}
-                <div className="text-center mb-4">
-                    <h3 className="text-sm font-medium uppercase text-blue-900">FAQs</h3>
+                <div className="inline-block mb-4 flex justify-center items-center">
+                    <span
+                        className="inline-block px-3 py-1 text-sm font-medium rounded-full text-[#071856]"
+                        style={{
+                            background: "rgba(140, 125, 160, 0.23)",
+                            borderRadius: "15px",
+                        }}
+                    >
+                        FAQs
+                    </span>
                 </div>
 
-                {/* Main title */}
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-blue-900">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#071856]">
                         Our Common and Frequently Questions
                         <br />
                         Answered for Convenience
                     </h2>
                 </div>
 
-                {/* Content container */}
-                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
-                    {/* Left side - Accordion */}
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 max-w-6xl mx-auto">
+                    {/* accordion */}
                     <div className="w-full lg:w-1/2">
-                        <div className="space-y-4">
+                        <Accordion type="single" collapsible className="space-y-4">
                             {faqData.map((item, index) => (
-                                <div key={index} className="border border-gray-200 rounded-md overflow-hidden">
-                                    <button
-                                        className="flex justify-between items-center w-full p-4 text-left font-medium text-blue-900"
-                                        onClick={() => toggleAccordion(index)}
-                                        aria-expanded={openIndex === index}
+                                <AccordionItem
+                                    key={index}
+                                    value={`item-${index}`}
+                                    className="bg-white rounded-lg shadow-md border-none"
+                                >
+                                    <AccordionTrigger
+                                        className="text-2x1 font-medium text-[#071856] p-4 hover:no-underline focus:outline-none focus:ring-0"
                                     >
-                                        <span>{item.question}</span>
-                                        {openIndex === index ? (
-                                            <ChevronUp className="w-5 h-5 text-blue-900" />
-                                        ) : (
-                                            <ChevronDown className="w-5 h-5 text-blue-900" />
-                                        )}
-                                    </button>
-                                    <div
-                                        className={`overflow-hidden transition-all duration-300 ${openIndex === index ? "max-h-96 p-4 pt-0" : "max-h-0"
-                                            }`}
-                                    >
-                                        <p className="text-gray-600">{item.answer}</p>
-                                    </div>
-                                </div>
+                                        {item.question}
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-[#071856] p-4 pt-0 text-sm">
+                                        {item.answer}
+                                    </AccordionContent>
+                                </AccordionItem>
                             ))}
-                        </div>
+                        </Accordion>
                     </div>
 
-                    {/* Right side - Image (only visible on desktop) */}
+                    {/* Right side  */}
                     <div className="hidden lg:block w-full lg:w-1/2">
                         <div className="rounded-lg overflow-hidden h-full">
                             <img
@@ -105,5 +99,5 @@ export default function FAQAccordion() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

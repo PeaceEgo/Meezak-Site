@@ -1,10 +1,9 @@
-"use client"
-
 import { useState, useEffect, useRef } from "react"
 
 export default function ServicesSection() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isMobile, setIsMobile] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
     const carouselRef = useRef(null)
 
     const services = [
@@ -35,15 +34,17 @@ export default function ServicesSection() {
     ]
 
     useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < 768)
+        const checkScreenSize = () => {
+            const width = window.innerWidth
+            setIsMobile(width < 768)
+            setIsTablet(width >= 768 && width < 1024)
         }
 
-        checkIfMobile()
-        window.addEventListener("resize", checkIfMobile)
+        checkScreenSize()
+        window.addEventListener("resize", checkScreenSize)
 
         return () => {
-            window.removeEventListener("resize", checkIfMobile)
+            window.removeEventListener("resize", checkScreenSize)
         }
     }, [])
 
@@ -76,6 +77,66 @@ export default function ServicesSection() {
             })
         }
     }, [currentIndex, isMobile])
+
+    const renderServiceCard = (service, index) => (
+        <div
+            key={index}
+            className="relative overflow-hidden transition-transform hover:scale-105"
+            style={{
+                width: "392px",
+                height: "242px",
+                borderRadius: "8px",
+                border: "2px solid transparent",
+                backgroundClip: "padding-box",
+                backgroundImage: "linear-gradient(to bottom, rgba(88, 7, 191, 0.2), rgba(41, 3, 89, 0.2))",
+            }}
+        >
+            {/* Border gradient */}
+            <div
+                style={{
+                    position: "absolute",
+                    inset: 0,
+                    padding: "2px",
+                    borderRadius: "10px",
+                    background: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%)",
+                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                    pointerEvents: "none",
+                }}
+            />
+
+            {/* Left purple blur */}
+            <div
+                className="absolute rounded-full blur-xl bg-purple-600 opacity-100"
+                style={{
+                    top: "30px",
+                    left: "30px",
+                    width: "50px",
+                    height: "50px",
+                }}
+            />
+
+            {/* Right gradient */}
+            <div
+                className="absolute z-0"
+                style={{
+                    bottom: "100px",
+                    right: "-100px",
+                    width: "250px",
+                    height: "250px",
+                    background: "linear-gradient(135deg, rgba(88, 7, 191, 0.7), rgba(41, 3, 89, 0.7))",
+                    filter: "blur(40px)",
+                    opacity: "1",
+                }}
+            />
+
+            <div className="relative z-10 p-6 h-full flex flex-col justify-center">
+                <h3 className="text-xl font-semibold mb-3 relative z-10">{service.title}</h3>
+                <p className="text-gray-300">{service.description}</p>
+            </div>
+        </div>
+    )
 
     return (
         <section
@@ -151,7 +212,7 @@ export default function ServicesSection() {
                                             }}
                                         />
 
-                                        {/* Right gradient  */}
+                                        {/* Right gradient */}
                                         <div
                                             className="absolute"
                                             style={{
@@ -160,7 +221,6 @@ export default function ServicesSection() {
                                                 width: "200px",
                                                 height: "200px",
                                                 background: "linear-gradient(135deg, #5807BF)",
-                                                // borderRadius: "100px",
                                                 filter: "blur(40px)",
                                                 opacity: "0.6",
                                                 zIndex: "1",
@@ -177,68 +237,8 @@ export default function ServicesSection() {
                         </div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
-                        {services.map((service, index) => (
-                            <div
-                                key={index}
-                                className="relative overflow-hidden transition-transform hover:scale-105"
-                                style={{
-                                    width: "392px",
-                                    height: "242px",
-                                    borderRadius: "8px",
-                                    border: "2px solid transparent",
-                                    backgroundClip: "padding-box",
-                                    backgroundImage: "linear-gradient(to bottom, rgba(88, 7, 191, 0.2), rgba(41, 3, 89, 0.2))",
-                                }}
-                            >
-                                {/* Border gradient */}
-                                <div
-                                    style={{
-                                        position: "absolute",
-                                        inset: 0,
-                                        padding: "2px",
-                                        borderRadius: "10px",
-                                        background: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%)",
-                                        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                                        WebkitMaskComposite: "xor",
-                                        maskComposite: "exclude",
-                                        pointerEvents: "none",
-                                    }}
-                                />
-
-                                {/* Left purple blur */}
-                                <div
-                                    className="absolute rounded-full blur-xl bg-purple-600 opacity-100"
-                                    style={{
-                                        top: "30px",
-                                        left: "30px",
-                                        width: "50px",
-                                        height: "50px",
-                                    }}
-                                />
-
-                                {/* Right gradient */}
-                                <div
-                                    className="absolute z-0"
-                                    style={{
-                                        bottom: "100px",
-                                        right: "-100px",
-                                        width: "250px",
-                                        height: "250px",
-                                        background: "linear-gradient(135deg, rgba(88, 7, 191, 0.7), rgba(41, 3, 89, 0.7))",
-                                        // borderRadius: "100px",
-                                        filter: "blur(40px)",
-                                        opacity: "1",
-                                      
-                                    }}
-                                />
-
-                                <div className="relative z-10 p-6 h-full flex flex-col justify-center">
-                                    <h3 className="text-xl font-semibold mb-3 relative z-10">{service.title}</h3>
-                                    <p className="text-gray-300">{service.description}</p>
-                                </div>
-                            </div>
-                        ))}
+                    <div className={`grid gap-6 justify-items-center ${isTablet ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
+                        {services.map((service, index) => renderServiceCard(service, index))}
                     </div>
                 )}
             </div>

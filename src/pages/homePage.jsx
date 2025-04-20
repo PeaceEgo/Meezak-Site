@@ -1,14 +1,19 @@
+import TestimonialSlider from "@/components/testimonial"
 import FAQAccordion from "../components/faqAccordion"
 import ServicesSection from "../components/servicesSect"
 import WhyChooseUs from "../components/whyChoose"
+import WorkspaceGallery from "../components/workSpace"
+
 
 
 function HomePage() {
   return (
-    <div className="w-full h-[100%] bg-[ #EEEEEE]"> 
+    <div className="w-[100vw] overflow-hidden"> 
           <ServicesSection/>
           <WhyChooseUs/>
           <FAQAccordion/>
+      <WorkspaceGallery/>
+      <TestimonialSlider/>
     </div>
   )
 }

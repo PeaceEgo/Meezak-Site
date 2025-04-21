@@ -37,12 +37,12 @@ function Hero() {
 
   return (
     <section
-      className="w-[100vw] h-[1200px] md:h-[1050.46px] pl-[112px] pr-[112px] text-white overflow-hidden flex items-center justify-center"
+      className="w-[100vw] h-[1200px] md:h-[1050.46px] pl-[70px] pr-[70px] text-white overflow-hidden flex items-center justify-center"
       style={{ background: "linear-gradient(247.14deg, #061345 0%, #071856 100%)" }}
     >
-      <div className="mx-auto px-4 text-center h-[100%] flex flex-col items-center justify-center">
+      <div className="mx-auto px-4 text-center h-[100%] flex flex-col items-center justify-center  md:w-[100%] ">
         {/* Wrapper for Tagline, Headline, Subtext, and CTA */}
-        <div className="container w-[100vw] h-[338px] md:w-[701px] md:h-[336.31px] flex flex-col justify-center items-center gap-6 mx-auto">
+        <div className="container w-[100vw] h-[338px] md:w-[100%] md:h-[336.31px] flex flex-col justify-center items-center gap-6 mx-auto ">
           {/* Tagline with Icon */}
           <div className="w-[266px] h-[26px] md:w-[311.81px] md:h-[36.31px] bg-[rgba(204,90,113,1)] py[6.08px] px[12.77px] md:py-[9.52px] md:px-5 gap-[9.52px] rounded-[4.06px] md:rounded-[6.35px] flex items-center justify-center">
             <img src={taglineIcon} alt="Tagline Icon" className="w-[12px] h-[14.5px] md:w-[14.29px] md:h-[17.26px]" />
@@ -69,10 +69,10 @@ function Hero() {
         </div>
 
         {/* Image Section Wrapper */}
-        <div className="mt-12 w-full md:w-[1050px] h-[372px] md:h-[300px] mx-auto relative flex items-center justify-center">
+        <div className="mt-12 w-full md:w-[100%] h-[372px] md:h-[300px] mx-auto relative flex items-center justify-center ">
           {/* Blurred Container (Background Only) */}
           <div
-            className="container md:w-[1000px] w-[342px] h-[272px] md:h-[280px] bg-gray-200/30 opacity-30 rounded-[40px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="container md:w-[100%] w-[342px] h-[347px] md:h-[340px] bg-gray-200/30 opacity-30 rounded-[40px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
             style={{ backdropFilter: 'blur(50px)' }}
           ></div>
 
@@ -83,12 +83,12 @@ function Hero() {
               <img
                 src={image1}
                 alt="Tech Visual 1"
-                className="w-[175px] h-[170px] md:w-[300px] md:h-[340px] rounded-[40px] border-1 border-white object-cover z-0 mr-[-40px] md:mr-[-60px] mt-0 md:mt-[-70px]"
+                className="w-[160px] h-[170px] md:w-[300px] md:h-[320px] md:rounded-[40px] rounded-[20px] border-2 md:border-4 border-white object-cover z-0 md:rotate-[-8deg] md:mt-[-80px] rotate-[-8deg]"
               />
               <img
                 src={image2}
                 alt="Tech Visual 2"
-                className="w-[175px] h-[170px] md:w-[300px] md:h-[340px] rounded-[40px] border-1 border-white object-cover z-10 mr-0 md:mr-[-70px] mt-0"
+                className="w-[160px] h-[170px] md:w-[300px] md:h-[320px] md:rounded-[40px] rounded-[20px] border-2 md:border-4 border-white object-cover  md:rotate-[4deg] rotate-[4deg] mt-2"
               />
             </div>
             {/* Bottom Row on Mobile */}
@@ -96,12 +96,12 @@ function Hero() {
               <img
                 src={image3}
                 alt="Tech Visual 3"
-                className="w-[175px] h-[170px] md:w-[300px] md:h-[340px] rounded-[40px] border-1 border-white object-cover z-20 mr-[-40px] md:mr-[-70px] mt-0"
+                className="w-[160px] h-[170px] md:w-[300px] md:h-[320px] md:rounded-[40px] rounded-[20px] border-2 md:border-4 border-white object-cover md:rotate-[-4deg] rotate-[-8deg]"
               />
               <img
                 src={image4}
                 alt="Tech Visual 4"
-                className="w-[175px] h-[170px] md:w-[300px] md:h-[340px] rounded-[40px] border-1 border-white object-cover z-0 mr-0 mt-0 md:mt-[-70px]"
+                className="w-[160px] h-[170px] md:w-[300px] md:h-[320px] md:rounded-[40px] rounded-[20px] border-2 md:border-4 border-white object-cover z-20 md:rotate-[8deg] md:mt-[-80px] rotate-[4deg] mt-2"
               />
             </div>
           </div>

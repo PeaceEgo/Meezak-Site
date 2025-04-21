@@ -1,9 +1,9 @@
-import twilioLogo from '../assets/images/twilio-logo.png';
-import mailchimpLogo from '../assets/images/mailchimp-logo.png';
-import basecampLogo from '../assets/images/basecamp-logo.png';
-import webflowLogo from '../assets/images/stripe-logo.png';
-import herokuLogo from '../assets/images/shopify-logo.png';
-import googleLogo from '../assets/images/google-logo.png';
+import twilioLogo from '../assets/images/twilio-logo.svg';
+import mailchimpLogo from '../assets/images/mailchimp-logo.svg';
+import basecampLogo from '../assets/images/basecamp-logo.svg';
+import webflowLogo from '../assets/images/stripe-logo.svg';
+import herokuLogo from '../assets/images/shopify-logo.svg';
+import googleLogo from '../assets/images/google-logo.svg';
 
 function TrustedLogos() {
   const logos = [

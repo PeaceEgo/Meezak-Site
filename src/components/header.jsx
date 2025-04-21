@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import whatsappLogo from '../assets/images/whatsapp-logo.png';
-import meezakLogo from '../assets/images/meezak-logo.png';
+import whatsappLogo from '../assets/images/whatsapp-logo.svg';
+import meezakLogo from '../assets/images/header-logo.svg';
 import hamburgerIcon from '../assets/icons/hamburger.png';
 import cancelIcon from '../assets/icons/cancel.png';
 
@@ -20,7 +20,7 @@ function Header() {
   return (
     <header className="bg-white shadow-md fixed w-full top-0 z-50">
       {/* Desktop Header */}
-      <div className="hidden md:flex justify-between items-center max-w-7xl mx-auto px-4 py-4 md:pl-6 md:pr-6 lg:pl-[112px] lg:pr-[112px]">
+      <div className="hidden md:flex justify-between items-center max-w-7xl mx-auto px-4 py-4 md:pl-6 md:pr-6 lg:pl-[60px] lg:pr-[50px]">
         <div className="flex items-center">
           {/* Logo */}
           <img src={meezakLogo} alt="Meezak Logo" className="h-[40px] w-[112px] lg:h-[46px] lg:w-[128.7px]" />

@@ -7,7 +7,7 @@ import WhyChooseUs from "../components/whyChoose"
 import WorkspaceGallery from "../components/workSpace"
 import TestimonialSlider from "@/components/testimonial"
 import GetStarted from "../components/GetStarted"
-
+import Footer from "../components/Footer"
 
 function HomePage() {
   return (
@@ -22,6 +22,7 @@ function HomePage() {
         <WorkspaceGallery />
         <TestimonialSlider />
           <GetStarted/>
+          <Footer/>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import FAQAccordion from "../components/faqAccordion"
 import ServicesSection from "../components/servicesSect"
 import WhyChooseUs from "../components/whyChoose"
 import GetStarted from "../components/GetStarted"
-
+import Footer from "../components/Footer"
 
 function HomePage() {
   return (
@@ -17,6 +17,7 @@ function HomePage() {
           <WhyChooseUs/>
           <FAQAccordion/>
           <GetStarted/>
+          <Footer/>
     </div>
   )
 }

@@ -80,7 +80,7 @@ export default function ContactHero() {
                                     height: "200px",
                                 }}
                             />
-                            <div className="mb-10 flex justify-center sm:max-w-md sm:mx-auto">
+                            <div className="mb-10 flex justify-center sm:max-w-md sm:mx-auto lg:mb-10 lg:justify-start">
                                 <div className="w-[64px] h-[64px] bg-gradient-to-r from-[#290359] to-[#5807BF] p-[3px] rounded-md shadow-lg flex items-center justify-center">
                                     <div className="flex items-center justify-center w-full h-full bg-[#5807BF] rounded-md">
                                         <img
@@ -91,7 +91,7 @@ export default function ContactHero() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col justify-center items-center text-center">
+                            <div className="flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
                                 <h2 className="text-4xl font-bold mb-6">
                                     <span className="text-[#CC5A71]">We'd love</span> to hear from you
                                 </h2>

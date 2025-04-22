@@ -47,13 +47,13 @@ function Header() {
           </Link>
           <div className="relative group">
             <Link
-              to="/why-choose-us"
+              to="/about"
               className={`text-base flex items-center ${isActive("/why-choose-us")
                   ? "text-[rgba(7,24,86,1)]"
                   : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"
                 }`}
             >
-              Why Choose Us
+             About us
               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -62,13 +62,13 @@ function Header() {
           </div>
           <div className="relative group">
             <Link
-              to="/testimonials"
+              to="/services"
               className={`text-base flex items-center ${isActive("/testimonials")
                   ? "text-[rgba(7,24,86,1)]"
                   : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"
                 }`}
             >
-              Testimonials
+              Services
               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -125,26 +125,26 @@ function Header() {
               )}
             </Link>
             <Link
-              to="/why-choose-us"
+              to="/about"
               className={`text-[14px] font-medium py-4 px-6 rounded-[20px] flex justify-between items-center ${isActive("/why-choose-us") ? "bg-blue-50 text-[rgba(7,24,86,1)]" : "text-[rgba(7,24,86,1)]"
                 }`}
               onClick={handleLinkClick}
             >
-              Why Choose Us
-              {!isActive("/why-choose-us") && (
+             About Us
+              {!isActive("/about") && (
                 <svg className="w-5 h-5 text-[rgba(7,24,86,1)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               )}
             </Link>
             <Link
-              to="/testimonials"
+              to="/services"
               className={`text-[14px] font-medium py-4 px-6 rounded-[20px] flex justify-between items-center ${isActive("/testimonials") ? "bg-blue-50 text-[rgba(7,24,86,1)]" : "text-[rgba(7,24,86,1)]"
                 }`}
               onClick={handleLinkClick}
             >
-              Testimonials
-              {!isActive("/testimonials") && (
+              Services
+              {!isActive("/Services") && (
                 <svg className="w-5 h-5 text-[rgba(7,24,86,1)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>

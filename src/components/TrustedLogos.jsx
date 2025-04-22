@@ -28,7 +28,6 @@ function TrustedLogos() {
         {/* Desktop: Moving Logos */}
         <div className="hidden md:block">
           <div className="flex w-[300%] animate-marquee ">
-            {/* Quadruple logos for a smoother loop */}
             {logos.concat(logos).concat(logos).concat(logos).map((logo, index) => (
               <img
                 key={index}

@@ -3,10 +3,11 @@ import whatsappLogo from '../assets/images/whatsapp-logo.svg';
 import meezakLogo from '../assets/images/header-logo.svg';
 import hamburgerIcon from '../assets/icons/hamburger.png';
 import cancelIcon from '../assets/icons/cancel.png';
-
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const location = useLocation() // Get current route location
+  const location = useLocation
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)

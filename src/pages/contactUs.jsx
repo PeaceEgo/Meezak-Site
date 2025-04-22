@@ -1,6 +1,7 @@
 import FAQAccordion from '@/components/faqAccordion'
 import ContactHero from '../components/contactHero'
 import LocationSection from '../components/location'
+import Footer from '@/components/Footer'
 
 function ContactUs() {
     return (
@@ -8,6 +9,7 @@ function ContactUs() {
             <ContactHero />
             <LocationSection />
             <FAQAccordion />
+            <Footer />
         </div>
     )
 }

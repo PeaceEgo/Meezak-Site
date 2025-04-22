@@ -16,7 +16,7 @@ function Header() {
   // Function to check if a route is active
   const isActive = (path) => {
     return location.pathname === path
-  }
+  } 
 
   // Function to handle link clicks (for mobile menu)
   const handleLinkClick = () => {

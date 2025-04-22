@@ -1,9 +1,15 @@
-import React from 'react'
+import OurTeamSection from "@/components/teamHero"
+import TeamGallery from "@/components/teamGallery"
+import GetStarted from "@/components/GetStarted"
 
-function About() {
+function AboutUs() {
   return (
-    <div>about</div>
+    <div >
+      <OurTeamSection />
+      <TeamGallery />
+      <GetStarted />
+    </div>
   )
 }
 
-export default About
+export default AboutUs

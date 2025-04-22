@@ -1,38 +1,35 @@
-"use client"
-
 import { useRef, useEffect } from "react"
-import office1 from "../assets/w1.svg" 
+import office1 from "../assets/w1.svg"
 import office2 from "../assets/w2.svg"
-import office3 from "../assets/w3.svg" 
-import office4 from "../assets/w4.svg" 
-import office5 from "../assets/w5.svg" 
-import office6 from "../assets/w6.svg" 
-
+import office3 from "../assets/w3.svg"
+import office4 from "../assets/w4.svg"
+import office5 from "../assets/w5.svg"
+import office6 from "../assets/w6.svg"
 
 const workspaceImages = [
     {
         id: 1,
-        src: office1, 
+        src: office1,
         alt: "Modern office space with glass partitions",
     },
     {
         id: 2,
-        src: office4, 
+        src: office4,
         alt: "Desk setup with computer and plants",
     },
     {
         id: 3,
-        src: office3, 
+        src: office3,
         alt: "Team collaboration meeting",
     },
     {
         id: 4,
-        src: office2, 
+        src: office2,
         alt: "Minimalist workspace with plants",
     },
     {
         id: 5,
-        src: office5, 
+        src: office5,
         alt: "Desk with laptop and notebook",
     },
     {
@@ -78,7 +75,6 @@ export default function WorkspaceGallery() {
             slider.scrollLeft = scrollLeft - walk
         }
 
-        
         const handleTouchStart = (e) => {
             isDown = true
             startX = e.touches[0].pageX - slider.offsetLeft
@@ -114,9 +110,8 @@ export default function WorkspaceGallery() {
     }, [])
 
     return (
-        <div className=" bg-white py-16 px-4 md:px-8 max-w-6xl mx-auto">
+        <section className="bg-white py-16 px-4 md:px-8 max-w-7xl mx-auto">
             <div>
-               
                 <div className="mb-4 flex justify-center items-center">
                     <span
                         className="px-3 py-1 text-sm font-medium rounded-full"
@@ -125,7 +120,7 @@ export default function WorkspaceGallery() {
                             color: "#071856",
                         }}
                     >
-                        WORKSPACE  IMAGES
+                        WORKSPACE IMAGES
                     </span>
                 </div>
 
@@ -157,7 +152,7 @@ export default function WorkspaceGallery() {
                     ))}
                 </div>
 
-                <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 ">
+                <div className="hidden md:grid lg:hidden grid-cols-2 gap-4">
                     {workspaceImages.map((image) => (
                         <div key={image.id} className="overflow-hidden rounded-lg">
                             <img src={image.src} alt={image.alt} className="w-full h-64 object-cover" />
@@ -165,53 +160,52 @@ export default function WorkspaceGallery() {
                     ))}
                 </div>
 
-                <div className="hidden lg:grid grid-cols-12 grid-rows-2 gap-4 h-[600px]">
-                    
-                    <div className="col-span-4 row-span-1">
+                <div className="hidden lg:grid grid-cols-12 grid-rows-2 gap-4 h-[600px] w-full">
+                    <div className="col-span-4 row-span-1 overflow-hidden rounded-lg">
                         <img
-                            src={workspaceImages[0].src }
+                            src={workspaceImages[0].src}
                             alt={workspaceImages[0].alt}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover"
                         />
                     </div>
-                    <div className="col-span-4 row-span-2">
+                    <div className="col-span-4 row-span-2 overflow-hidden rounded-lg">
                         <img
-                            src={workspaceImages[1].src }
+                            src={workspaceImages[1].src}
                             alt={workspaceImages[1].alt}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover"
                         />
                     </div>
-                    <div className="col-span-4 row-span-1">
+                    <div className="col-span-4 row-span-1 overflow-hidden rounded-lg">
                         <img
-                            src={workspaceImages[2].src }
+                            src={workspaceImages[2].src}
                             alt={workspaceImages[2].alt}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover"
                         />
                     </div>
 
-                    <div className="col-span-2 row-span-1">
+                    <div className="col-span-2 row-span-1 overflow-hidden rounded-lg">
                         <img
-                            src={workspaceImages[3].src }
+                            src={workspaceImages[3].src}
                             alt={workspaceImages[3].alt}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover"
                         />
                     </div>
-                    <div className="col-span-2 row-span-1">
+                    <div className="col-span-2 row-span-1 overflow-hidden rounded-lg">
                         <img
-                            src={workspaceImages[4].src }
+                            src={workspaceImages[4].src}
                             alt={workspaceImages[4].alt}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover"
                         />
                     </div>
-                    <div className="col-span-4 row-span-1">
+                    <div className="col-span-4 row-span-1 overflow-hidden rounded-lg">
                         <img
-                            src={workspaceImages[5].src }
+                            src={workspaceImages[5].src}
                             alt={workspaceImages[5].alt}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover"
                         />
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

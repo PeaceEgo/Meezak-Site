@@ -47,7 +47,7 @@ export default function FAQAccordion() {
                     <span
                         className="inline-block px-3 py-1 text-sm font-medium rounded-full text-[#071856]"
                         style={{
-                            background: "rgba(140, 125, 160, 0.23)",
+                            background: "rgba(140, 125, 160, 0.69)",
                             borderRadius: "15px",
                         }}
                     >

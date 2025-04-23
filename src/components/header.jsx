@@ -93,7 +93,7 @@ function Header() {
                   About Us
                 </Link>
                 <Link
-                  to="/team"
+                  to="/ourTeam"
                   className="block px-4 py-3 text-[14px] font-medium text-[rgba(7,24,86,1)] hover:bg-gray-100"
                   onClick={handleLinkClick}
                 >
@@ -220,7 +220,7 @@ function Header() {
                     About Us
                   </Link>
                   <Link
-                    to="/team"
+                    to="/ourTeam"
                     className="block px-6 py-3 text-[14px] font-medium text-[rgba(7,24,86,1)] hover:bg-gray-100"
                     onClick={handleLinkClick}
                   >

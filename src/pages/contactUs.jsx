@@ -1,15 +1,15 @@
 import FAQAccordion from '@/components/faqAccordion'
 import ContactHero from '../components/contactHero'
 import LocationSection from '../components/location'
-import Footer from '@/components/Footer'
+
 
 function ContactUs() {
     return (
-        <div>
+        <div className='w-[100vw] overflow-hidden'>
             <ContactHero />
             <LocationSection />
             <FAQAccordion />
-            <Footer />
+           
         </div>
     )
 }

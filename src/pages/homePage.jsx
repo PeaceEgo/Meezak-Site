@@ -1,4 +1,4 @@
-import Header from '../components/header';
+
 import Hero from '../components/hero';
 import TrustedLogos from '../components/TrustedLogos';
 import FAQAccordion from "../components/faqAccordion"
@@ -7,13 +7,13 @@ import WhyChooseUs from "../components/whyChoose"
 import WorkspaceGallery from "../components/workSpace"
 import TestimonialSlider from "@/components/testimonial"
 import GetStarted from "../components/GetStarted"
-import Footer from "../components/Footer"
+
 
 function HomePage() {
   return (
    
     <div className="w-[100vw] overflow-hidden"> 
-          <Header/>
+        
           <Hero/>
           <TrustedLogos/>
           <ServicesSection/>
@@ -22,7 +22,7 @@ function HomePage() {
         <WorkspaceGallery />
         <TestimonialSlider />
           <GetStarted/>
-          <Footer/>
+          
     </div>
   )
 }

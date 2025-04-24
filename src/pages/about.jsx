@@ -1,23 +1,21 @@
-import AboutHero from '@/components/aboutHero'
-import MissionVisionSection from '@/components/MissionVisionSection'
-import TrustedLogos from  '../components/TrustedLogos'
-import TestimonialSlider from '../components/testimonial'
-import GetStarted from '@/components/GetStarted'
-import TeamSection from '@/components/TeamSection'
-import Footer from '@/components/Footer'
+import AboutUsHero from "@/components/aboutHero"
+import TrustedLogos from "@/components/TrustedLogos"
+import MissionVisionSection from "@/components/MissionVisionSection"
+import TeamSection from "@/components/TeamSection"
+import GetStarted from "@/components/GetStarted"
+import TestimonialSlider from "@/components/testimonial"
 
-function ContactUs() {
-    return (
-        <div>
-            <AboutHero />
-            <TrustedLogos />
-            <MissionVisionSection />
-            <TeamSection />
-            {/* <TestimonialSlider /> */}
-            <GetStarted />
-            <Footer />
-        </div>
-    )
+function AboutUs() {
+  return (
+    <div >
+      <AboutUsHero />
+      <TrustedLogos />
+      <MissionVisionSection />
+      <TeamSection/>
+      <TestimonialSlider/>
+      <GetStarted />
+    </div>
+  )
 }
 
-export default ContactUs
+export default AboutUs

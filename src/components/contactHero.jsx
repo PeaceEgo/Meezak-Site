@@ -22,7 +22,7 @@ export default function ContactHero() {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("Form submitted:", formData)
-        // Here you would typically send the data to your backend
+     
         alert("Form submitted successfully!")
         setFormData({
             firstName: "",
@@ -41,7 +41,7 @@ export default function ContactHero() {
 
             <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
                 <div className="flex flex-col lg:flex-row md:flex-row items-center max-w-5xl mx-auto">
-                    {/* Left Column - Contact Info */}
+                   
                     <div className="w-full lg:w-1/2 mt-20 lg:mb-0 text-white">
                         <div className="max-w-md">
                             <div

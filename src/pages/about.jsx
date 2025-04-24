@@ -1,5 +1,4 @@
 import AboutHero from '@/components/aboutHero'
-import ContactHero from '../components/contactHero'
 import MissionVisionSection from '@/components/MissionVisionSection'
 import TrustedLogos from  '../components/TrustedLogos'
 import TestimonialSlider from '../components/testimonial'
@@ -16,7 +15,6 @@ function ContactUs() {
             <TeamSection />
             {/* <TestimonialSlider /> */}
             <GetStarted />
-    
             <Footer />
         </div>
     )

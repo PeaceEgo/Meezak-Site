@@ -41,7 +41,7 @@ const faqData = [
 
 export default function FAQAccordion() {
     return (
-        <div className="py-16 px-4 md:px-8" style={{ backgroundColor: "#F5F6F5" }}>
+        <div className="py-16 px-4 md:px-8" style={{ backgroundColor: "#F5F6F5" }} id="faq">
             <div className="max-w-7xl mx-auto">
                 <div className="inline-block mb-4 flex justify-center items-center">
                     <span

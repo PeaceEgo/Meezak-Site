@@ -25,6 +25,7 @@ export default function ServiceCard({ service }) {
             pointerEvents: "none",
           }}
         />
+        
   
         {/* Left purple blur */}
         <div

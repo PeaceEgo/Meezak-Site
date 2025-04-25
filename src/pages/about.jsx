@@ -7,14 +7,14 @@ import TestimonialSlider from "@/components/testimonial"
 
 function AboutUs() {
   return (
-    <div >
+    < >
       <AboutUsHero />
       <TrustedLogos />
       <MissionVisionSection />
       <TeamSection/>
       <TestimonialSlider/>
       <GetStarted />
-    </div>
+    </>
   )
 }
 

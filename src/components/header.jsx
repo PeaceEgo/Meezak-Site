@@ -55,10 +55,10 @@ function Header() {
             />
           </Link>
         </div>
-        <nav className="flex space-x-4 lg:space-x-6 items-center justify-between">
+        <nav className="flex space-x-4 lg:space-x-6 items-center justify-between md:w-[450px]">
           <Link
             to="/"
-            className={`text-base ${isActive("/") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
+            className={`text-[16px] font-[700] ${isActive("/") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
           >
             Home
           </Link>
@@ -68,11 +68,11 @@ function Header() {
             <div className="flex items-center">
               <Link
                 to="/about"
-                className={`text-base ${isActive("/about") || isActive("/team") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
+                className={`text-[16px] font-[700] ${isActive("/about") || isActive("/team") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
               >
                 About us
               </Link>
-              <button onClick={toggleAboutDropdown} className="ml-1 focus:outline-none">
+              <button onClick={toggleAboutDropdown} className="ml-1 focus:outline-none hover:outline-none hover:border-none border-none">
                 <svg
                   className={`w-4 h-4 transition-transform duration-300 ${isAboutOpen ? "rotate-180" : "rotate-0"}`}
                   fill="none"
@@ -84,17 +84,17 @@ function Header() {
               </button>
             </div>
             {isAboutOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white shadow-md rounded-md w-[120px] z-50">
+              <div className="absolute top-full left-0 mt-2 bg-[#EEEEEE] shadow-md rounded-md w-[120px] md:w-[260px] h-[160px] flex flex-col gap-4 p-4 z-50">
                 <Link
                   to="/about"
-                  className="block px-4 py-3 text-[14px] font-medium text-[rgba(7,24,86,1)] hover:bg-gray-100"
+                  className="block w-[228px] h-[56px] p-4 rounded-[5px] bg-white text-[14px] font-[600] text-[rgba(7,24,86,1)] hover:bg-gray-100"
                   onClick={handleLinkClick}
                 >
                   About Us
                 </Link>
                 <Link
                   to="/ourTeam"
-                  className="block px-4 py-3 text-[14px] font-medium text-[rgba(7,24,86,1)] hover:bg-gray-100"
+                  className="block w-[228px] h-[56px] p-4 rounded-[5px] bg-white text-[14px] font-[600] text-[rgba(7,24,86,1)] hover:bg-gray-100"
                   onClick={handleLinkClick}
                 >
                   Our Team
@@ -108,11 +108,11 @@ function Header() {
             <div className="flex items-center">
               <Link
                 to="/services"
-                className={`text-base ${isActive("/services") || isActive("/works") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
+                className={`text-[16px] font-[700] ${isActive("/services") || isActive("/works") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
               >
                 Services
               </Link>
-              <button onClick={toggleServicesDropdown} className="ml-1 focus:outline-none">
+              <button onClick={toggleServicesDropdown} className="ml-1 focus:outline-none hover:outline-none hover:border-none border-none">
                 <svg
                   className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? "rotate-180" : "rotate-0"}`}
                   fill="none"
@@ -124,17 +124,17 @@ function Header() {
               </button>
             </div>
             {isServicesOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white shadow-md rounded-md w-[120px] z-50">
+              <div className="absolute top-full left-0 mt-2 bg-[#EEEEEE] shadow-md rounded-md w-[120px] md:w-[260px] h-[160px] flex flex-col gap-4 p-4 z-50">
                 <Link
                   to="/services"
-                  className="block px-4 py-3 text-[14px] font-medium text-[rgba(7,24,86,1)] hover:bg-gray-100"
+                  className="block w-[228px] h-[56px] p-4 rounded-[5px] bg-white text-[14px] font-[600] text-[rgba(7,24,86,1)] hover:bg-gray-100"
                   onClick={handleLinkClick}
                 >
                   Our Services
                 </Link>
                 <Link
                   to="/works"
-                  className="block px-4 py-3 text-[14px] font-medium text-[rgba(7,24,86,1)] hover:bg-gray-100"
+                  className="block w-[228px] h-[56px] p-4 rounded-[5px] bg-white text-[14px] font-[600] text-[rgba(7,24,86,1)] hover:bg-gray-100"
                   onClick={handleLinkClick}
                 >
                   Our Works
@@ -145,7 +145,7 @@ function Header() {
 
           <Link
             to="/contact"
-            className={`text-base ${isActive("/contact") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
+            className={`text-[16px] font-[700] ${isActive("/contact") ? "text-[rgba(7,24,86,1)]" : "text-[rgba(21,73,93,1)] hover:text-[rgba(33,116,148,1)]"}`}
           >
             Contact Us
           </Link>

@@ -22,7 +22,7 @@ function FooterDesktop() {
               Meezak Technologies is a registered startup IT Consulting Company in Nigeria, West Africa & Globally.
             </p>
             <div className="flex space-x-4">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://x.com/MeezakTechLtd?t=ZjNadxZ43wVBbAqILjyn_A&s=09" target="_blank" rel="noopener noreferrer"
                 className="md:w-[24px] md:h-[24px] w-[11px] h-[12px] border-[0.5px] border-red rounded-full flex items-center justify-center bg-red ">
                 <img src={twitterIcon} alt="Twitter" className="md:h-[11px] md:w-[12px]" />
               </a>
@@ -34,7 +34,7 @@ function FooterDesktop() {
                 className="md:w-[24px] md:h-[24px] w-[11px] h-[12px] border-[0.5px] border-white rounded-full flex items-center justify-center">
                 <img src={linkedinIcon} alt="LinkedIn" className="md:h-[10px] md:w-[10.67px]" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/meezaktechnologies_?igsh=MTd2cXQzMWFnN2VsbQ==" target="_blank" rel="noopener noreferrer"
                 className="md:w-[24px] md:h-[24px] w-[11px] h-[12px] border-[0.5px] border-white rounded-full flex items-center justify-center">
                 <img src={instagramIcon} alt="Instagram" className="md:h-[12px] md:w-[12px]" />
               </a>
@@ -48,16 +48,16 @@ function FooterDesktop() {
               <h3 className="text-lg md:text-[12px] font-semibold mb-2">COMPANY</h3>
               <ul className="space-y-1 text-center md:text-left">
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Home</a>
+                  <a href="/" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Home</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">About Us</a>
+                  <a href="/about" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">About Us</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Service</a>
+                  <a href="/service" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Service</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
+                  <a href="/contact" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
                 </li>
               </ul>
             </div>
@@ -67,16 +67,16 @@ function FooterDesktop() {
               <h3 className="text-lg md:text-[12px] font-semibold mb-2">SUPPORT</h3>
               <ul className="space-y-1 text-center md:text-left">
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
+                  <a href="/contact" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Quick Form</a>
+                  <a href="/contact" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Quick Form</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">FAQ</a>
+                  <a href="/contact#faq" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">FAQ</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Live Location</a>
+                  <a href="/contact#map" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Live Location</a>
                 </li>
               </ul>
             </div>
@@ -86,13 +86,13 @@ function FooterDesktop() {
               <h3 className="text-lg md:text-[12px] font-semibold mb-2">OUR WORKS</h3>
               <ul className="space-y-1 text-center md:text-left">
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Products</a>
+                  <a href="/works" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Products</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Portfolio</a>
+                  <a href="/works" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Portfolio</a>
                 </li>
                 <li>
-                  <a href="#" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Our Services</a>
+                  <a href="/services" className="text-base md:text-[12px] font-[500] text-[rgba(255,255,255,1)] hover:text-white">Our Services</a>
                 </li>
               </ul>
             </div>

@@ -1,6 +1,6 @@
 const LocationSection = () => {
     return (
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white" id="map">
             <div className="container mx-auto px-4 max-w-6xl ">
                 <div className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch gap-8">
                     {/* Map Section */}

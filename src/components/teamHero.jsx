@@ -1,8 +1,8 @@
-"use client"
 
 import { useState } from "react"
-import { Link } from "react-router-dom"
-import heroImage from "../assets/images/teamHero.svg"
+// import { Link } from "react-router-dom"
+import heroImage from "../assets/images/office.svg"
+import CTAButton from "./ctaButton"
 
 const OurTeamSection = () => {
     const [isHovered, setIsHovered] = useState(false)
@@ -11,11 +11,11 @@ const OurTeamSection = () => {
         <section className="bg-white py-16 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mt-16">
                 {/* Team Image */}
-                <div className="mb-8 rounded-lg overflow-hidden shadow-lg mx-auto w-[342px] h-[174px] sm:w-full sm:h-auto">
+                <div className="mb-8 rounded-lg overflow-hidden shadow-lg  mx-auto w-[342px] h-[174px] sm:w-full sm:h-auto">
                     <img
                         src={heroImage || "/placeholder.svg"}
                         alt="Our team working in a modern office space"
-                        className="w-full h-full sm:h-auto object-cover"
+                        className="w-full h-full sm:h-auto  max-h-[300px] object-cover object-center"
                     />
                 </div>
 
@@ -31,26 +31,10 @@ const OurTeamSection = () => {
                         captivate, connect, and convert! Scroll down to see the faces behind the mighty works.
                     </p>
 
-                    <div className="flex">
-                        <Link
-                            to="/contact"
-                            className="group px-8 py-3 border border-[#CC5A71] text-[#CC5A71] font-medium rounded hover:bg-[#CC5A71] hover:text-white transition-colors duration-300 flex items-center"
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
-                        >
-                            <span>Work With Us</span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className={`h-6 w-6 ml-2 transform transition-all duration-300 ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
-                                    }`}
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <polyline points="9 18 15 12 9 6" />
-                            </svg>
-                        </Link>
+                    <div>
+                        
+                        <CTAButton to="/contact" text="Work With Us" />
+
                     </div>
                     
                 </div>

@@ -22,7 +22,7 @@ export default function ContactHero() {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("Form submitted:", formData)
-     
+
         alert("Form submitted successfully!")
         setFormData({
             firstName: "",
@@ -35,13 +35,13 @@ export default function ContactHero() {
 
     return (
         <section className="w-[100vw] relative overflow-hidden bg-[#F5F6F5]">
-           
+
             {/* Background with gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#061345] to-[#071856] z-0"></div>
 
             <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-                <div className="flex flex-col lg:flex-row md:flex-row items-center max-w-5xl mx-auto">
-                   
+                <div className="flex flex-col lg:flex-row md:flex-row items-center max-w-6xl mx-auto">
+
                     <div className="w-full lg:w-1/2 mt-20 lg:mb-0 text-white">
                         <div className="max-w-md">
                             <div
@@ -222,14 +222,14 @@ export default function ContactHero() {
                                     ></textarea>
                                 </div>
 
-                               <div className="flex justify-center item-center">
+                                <div className="flex justify-center item-center">
                                     <button
                                         type="submit"
                                         className=" w-1/2 bg-[#071856] hover:bg-blue-800 text-white font-medium py-3 px-3 rounded-lg transition duration-300"
                                     >
                                         Send
                                     </button>
-                               </div>
+                                </div>
                             </form>
                         </div>
                     </div>

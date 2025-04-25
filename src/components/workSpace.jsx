@@ -1,11 +1,11 @@
 
 import { useRef, useEffect } from "react"
-import office1 from "../assets/w1.svg"
-import office2 from "../assets/w2.svg"
-import office3 from "../assets/w3.svg"
-import office4 from "../assets/w4.svg"
-import office5 from "../assets/w5.svg"
-import office6 from "../assets/w6.svg"
+import office1 from "../assets/workSpace1.jpeg"
+import office2 from "../assets/workSpace2.jpeg"
+import office3 from "../assets/workSpace3.jpeg"
+import office4 from "../assets/middle.jpeg"
+import office5 from "../assets/workSpace5.jpeg"
+import office6 from "../assets/workSpace6.jpeg"
 
 const workspaceImages = [
     {

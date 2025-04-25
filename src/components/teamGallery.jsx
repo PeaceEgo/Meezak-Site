@@ -1,7 +1,11 @@
 import Person1 from "../assets/images/person.svg";
-import Person2 from "../assets/images/person2.png";
-import Person3 from "../assets/images/person3.svg";
-import Person4 from "../assets/images/person4.png";
+import Person2 from "../assets/images/productM.jpeg";
+import Person3 from "../assets/images/hr.jpeg";
+import Person5 from "../assets/images/frontend1.jpeg";
+import Person6 from "../assets/images/frontend2.jpeg";
+import Person7 from "../assets/images/design.jpeg";
+import Person4 from "../assets/images/socials.jpeg";
+import Person8 from "../assets/images/graphics.jpeg";
 
 const teamData = {
     boardOfDirectors: [
@@ -16,8 +20,8 @@ const teamData = {
         },
         {
             id: 2,
-            name: "Jackson Patterson",
-            position: "Head of Development",
+            name: "Abiola Olatunde",
+            position: "Product Manager",
             image: Person2,
             width: 250,
             height: 300,
@@ -25,7 +29,7 @@ const teamData = {
         },
         {
             id: 3,
-            name: "Sophia Richardson",
+            name: "Amaku Oluchi",
             position: "HR/Admin. Manager",
             image: Person3,
             width: 250,
@@ -34,7 +38,7 @@ const teamData = {
         },
         {
             id: 4,
-            name: "Marcus Anderson",
+            name: "Morris Anderson",
             position: "Head of Socials",
             image: Person4,
             width: 250,
@@ -54,18 +58,18 @@ const teamData = {
         },
         {
             id: 2,
-            name: "Jackson Patterson",
-            position: "Backend Developer",
-            image: Person2,
+            name: "Michael Olaleye",
+            position: "Frontend Developer",
+            image: Person6,
             width: 250,
             height: 300,
             color: "bg-[#3771C8]",
         },
         {
             id: 3,
-            name: "Sophia Richardson",
+            name: "Peace Nnorom",
             position: "Frontend Developer",
-            image: Person3,
+            image: Person5,
             width: 250,
             height: 300,
             color: "bg-[#5E8E3E]",
@@ -75,17 +79,17 @@ const teamData = {
         {
             id: 1,
             name: "Martina Anderson",
-            position: "Design Lead",
-            image: Person1,
+            position: "UI/UX Designer",
+            image: Person7,
             width: 250,
             height: 300,
             color: "bg-[#CC5A71]",
         },
         {
             id: 2,
-            name: "Jackson Patterson",
-            position: "UI/UX Designer",
-            image: Person2,
+            name: "Joshua Patterson",
+            position: "Graphics Designer",
+            image: Person8,
             width: 250,
             height: 300,
             color: "bg-[#3771C8]",
@@ -101,7 +105,7 @@ const teamData = {
         },
         {
             id: 4,
-            name: "Marcus Anderson",
+            name: "Morris Anderson",
             position: "Content Creator",
             image: Person4,
             width: 250,
@@ -121,9 +125,9 @@ const teamData = {
         },
         {
             id: 2,
-            name: "Jackson Patterson",
+            name: "Oluchi Amaku",
             position: "HR/Admin. Manager",
-            image: Person2,
+            image: Person3,
             width: 250,
             height: 300,
             color: "bg-[#3771C8]",

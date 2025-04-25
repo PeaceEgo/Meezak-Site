@@ -15,7 +15,7 @@ function HomePage() {
     <div className="w-[100vw] overflow-hidden"> 
         
           <Hero/>
-          <TrustedLogos/>
+          {/* <TrustedLogos/> */}
           <ServicesSection/>
           <WhyChooseUs/>
           <FAQAccordion/>

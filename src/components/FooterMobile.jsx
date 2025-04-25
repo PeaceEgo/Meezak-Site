@@ -1,11 +1,8 @@
-import meezakLogo from '../assets/images/footer-logo.svg'; // Included for consistency, though not used in mobile
 import twitterIcon from '../assets/icons/fbb-icon.svg';
 import facebookIcon from '../assets/icons/x-icon.svg';
 import linkedinIcon from '../assets/icons/linkedin-icon.svg';
 import instagramIcon from '../assets/icons/instagram-icon.svg';
-import locationIcon from '../assets/icons/location-icon.svg';
-import emailIcon from '../assets/icons/email-icon.svg';
-import phoneIcon from '../assets/icons/phone-icon.svg';
+
 
 function FooterMobile() {
   return (
@@ -20,16 +17,16 @@ function FooterMobile() {
               <h3 className="text-[18px] font-[700] mb-2">COMPANY</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Home</a>
+                  <a href="/" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Home</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">About Us</a>
+                  <a href="/about" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">About Us</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Service</a>
+                  <a href="/services" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Service</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
+                  <a href="/contact" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
                 </li>
               </ul>
             </div>
@@ -39,16 +36,16 @@ function FooterMobile() {
               <h3 className="text-[18px] font-[700] mb-2 ">SUPPORT</h3>
               <ul className="space-y-1 ">
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
+                  <a href="/contact" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Contact</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Quick Form</a>
+                  <a href="/contact" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Quick Form</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">FAQ</a>
+                  <a href="/contact#faq" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">FAQ</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Live Location</a>
+                  <a href="/contact#map" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Live Location</a>
                 </li>
               </ul>
             </div>
@@ -61,13 +58,13 @@ function FooterMobile() {
               <h3 className="text-[18px] font-[700] mb-2  w-[114px]">OUR WORKS</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Products</a>
+                  <a href="/works" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Products</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Portfolio</a>
+                  <a href="/works" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Portfolio</a>
                 </li>
                 <li>
-                  <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Our Services</a>
+                  <a href="/services" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">Our Services</a>
                 </li>
               </ul>
             </div>
@@ -95,7 +92,7 @@ function FooterMobile() {
         <div className="border-t border-[rgba(255,255,255,0.5)] mt-8 pt-6 flex flex-col items-start ">
            {/* Social Media Icons (Moved Below the Line) */}
            <div className="flex space-x-4 h-[77px]">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://x.com/MeezakTechLtd?t=ZjNadxZ43wVBbAqILjyn_A&s=09" target="_blank" rel="noopener noreferrer"
               className="w-[37px] h-[37px] border-[0.7px] border-white rounded-full flex items-center justify-center">
               <img src={twitterIcon} alt="Twitter" className="h-[17px] w-[18px]" />
             </a>
@@ -107,7 +104,7 @@ function FooterMobile() {
               className="w-[37px] h-[37px] border-[0.7px] border-white rounded-full flex items-center justify-center">
               <img src={linkedinIcon} alt="LinkedIn" className="h-[15px] w-[16px]" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/meezaktechnologies_?igsh=MTd2cXQzMWFnN2VsbQ==" target="_blank" rel="noopener noreferrer"
               className="w-[37px] h-[37px] border-[0.7px] border-white rounded-full flex items-center justify-center">
               <img src={instagramIcon} alt="Instagram" className="h-[18px] w-[18px]" />
             </a>

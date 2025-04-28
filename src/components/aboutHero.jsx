@@ -1,4 +1,4 @@
-import officeImage from '../assets/images/office.svg'; 
+import officeImage from '../assets/middle.jpeg'; 
 import arrowIcon from '../assets/icons/arrow-up.svg'; 
 
 function AboutUsHero() {
@@ -26,7 +26,7 @@ function AboutUsHero() {
             <img
               src={officeImage}
               alt="Meezak Technologies Office"
-              className="w-full h-auto rounded-[40px] object-cover"
+              className="w-full md:h-[433px] rounded-[40px] object-cover"
             />
           </div>
 

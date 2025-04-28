@@ -4,7 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "./ui/accordion";
-import RightImage from "../assets/faq.svg";
+import RightImage from "../assets/images/faq.jpeg";
 
 const faqData = [
     {

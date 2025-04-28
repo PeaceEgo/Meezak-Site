@@ -3,7 +3,7 @@ import teamMember1 from '../assets/images/team-member-1.jpg';
 import teamMember2 from '../assets/images/team-member-2.jpg';
 import teamMember3 from '../assets/images/team-member-3.jpg';
 import teamMember4 from '../assets/images/team-member-4.jpg';
-import teamMember5 from '../assets/images/team-member-5.jpg';
+import teamMember5 from '../assets/images/writer.jpeg';
 
 export default function TeamSection() {
   const [isMobile, setIsMobile] = useState(false);
@@ -22,20 +22,20 @@ export default function TeamSection() {
       bgColor: "rgba(7,24,86,1)", 
     },
     {
-      name: "Olaitan Sulaimon",
+      name: "Amaku Oluchi",
       role: "HR Admin Officer",
       image: teamMember3,
       bgColor: "rgba(0,128,0,1)", 
     },
     {
-      name: "Olaitan Sulaimon",
+      name: "Morris Anderson",
       role: "Head of Socials",
       image: teamMember4,
       bgColor: "rgba(7,24,86,1)", 
     },
     {
-      name: "Olaitan Sulaimon",
-      role: "Head of Design",
+      name: "Sophia Richardson",
+      role: "Media Specialist",
       image: teamMember5,
       bgColor: "rgba(0,128,128,1)", 
     },

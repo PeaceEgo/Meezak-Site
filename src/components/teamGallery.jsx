@@ -1,6 +1,7 @@
 import Person1 from "../assets/images/person.svg";
 import Person2 from "../assets/images/productM.jpeg";
 import Person3 from "../assets/images/hr.jpeg";
+import Person9 from "../assets/images/writer.jpeg";  
 import Person5 from "../assets/images/frontend1.jpeg";
 import Person6 from "../assets/images/frontend2.jpeg";
 import Person7 from "../assets/images/design.jpeg";
@@ -98,7 +99,7 @@ const teamData = {
             id: 3,
             name: "Sophia Richardson",
             position: "Media Specialist",
-            image: Person3,
+            image: Person9,
             width: 250,
             height: 300,
             color: "bg-[#5E8E3E]",

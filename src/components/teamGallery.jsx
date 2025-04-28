@@ -4,7 +4,7 @@ import Person3 from "../assets/images/hr.jpeg";
 import Person9 from "../assets/images/writer.jpeg";  
 import Person5 from "../assets/images/frontend1.jpeg";
 import Person6 from "../assets/images/frontend2.jpeg";
-import Person7 from "../assets/images/design.jpeg";
+import Person7 from "../assets/images/design.jpg";
 import Person4 from "../assets/images/socials.jpeg";
 import Person8 from "../assets/images/graphics.jpeg";
 
@@ -79,7 +79,7 @@ const teamData = {
     designMediaTeam: [
         {
             id: 1,
-            name: "Martina Anderson",
+            name: "Abolarin Ayomide",
             position: "UI/UX Designer",
             image: Person7,
             width: 250,

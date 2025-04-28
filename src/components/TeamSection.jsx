@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import teamMember1 from '../assets/images/team-member-1.jpg';
 import teamMember2 from '../assets/images/team-member-2.jpg';
-import teamMember3 from '../assets/images/team-member-3.jpg';
-import teamMember4 from '../assets/images/team-member-4.jpg';
+import teamMember3 from '../assets/images/hr.jpeg';
+import teamMember4 from '../assets/images/socials.jpeg';
 import teamMember5 from '../assets/images/writer.jpeg';
 
 export default function TeamSection() {

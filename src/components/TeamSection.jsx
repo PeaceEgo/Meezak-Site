@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import teamMember1 from '../assets/images/team-member-1.jpg';
-import teamMember2 from '../assets/images/team-member-2.jpg';
+import teamMember2 from '../assets/images/lead-dev.jpeg';
 import teamMember3 from '../assets/images/hr.jpeg';
 import teamMember4 from '../assets/images/socials.jpeg';
 import teamMember5 from '../assets/images/writer.jpeg';
@@ -10,14 +10,14 @@ export default function TeamSection() {
 
   const teamMembers = [
     {
-      name: "Olaitan Sulaimon",
+      name: "Kazeem",
       role: "C.E.O",
       image: teamMember1,
       bgColor: "rgba(204,90,113,1)",
     },
     {
-      name: "Olaitan Sulaimon",
-      role: "Head of Development",
+      name: "Damilare Ayodele",
+      role: "Head Of Development",
       image: teamMember2,
       bgColor: "rgba(7,24,86,1)", 
     },
@@ -28,13 +28,13 @@ export default function TeamSection() {
       bgColor: "rgba(0,128,0,1)", 
     },
     {
-      name: "Morris Anderson",
-      role: "Head of Socials",
+      name: "Morris Ndeobi",
+      role: "Head Of Socials",
       image: teamMember4,
       bgColor: "rgba(7,24,86,1)", 
     },
     {
-      name: "Sophia Richardson",
+      name: "Florence Okafor",
       role: "Media Specialist",
       image: teamMember5,
       bgColor: "rgba(0,128,128,1)", 

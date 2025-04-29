@@ -1,18 +1,18 @@
-import Person1 from "../assets/images/person.svg";
+import Person1 from "../assets/images/lead-dev.jpeg";
 import Person2 from "../assets/images/productM.jpeg";
 import Person3 from "../assets/images/hr.jpeg";
 import Person9 from "../assets/images/writer.jpeg";  
-import Person5 from "../assets/images/frontend1.jpeg";
+import Person5 from "../assets/images/frontend1.JPG";
 import Person6 from "../assets/images/frontend2.jpeg";
 import Person7 from "../assets/images/design.jpg";
 import Person4 from "../assets/images/socials.jpeg";
-import Person8 from "../assets/images/graphics.jpeg";
+import Person8 from "../assets/images/graphics.png";
 
 const teamData = {
     boardOfDirectors: [
         {
             id: 1,
-            name: "Martina Anderson",
+            name: "Kazeem",
             position: "CEO",
             image: Person1,
             width: 250,
@@ -21,7 +21,7 @@ const teamData = {
         },
         {
             id: 2,
-            name: "Abiola Olatunde",
+            name: "Olatunde Ojesola",
             position: "Product Manager",
             image: Person2,
             width: 250,
@@ -39,7 +39,7 @@ const teamData = {
         },
         {
             id: 4,
-            name: "Morris Anderson",
+            name: "Morris Ndeobi",
             position: "Head of Socials",
             image: Person4,
             width: 250,
@@ -50,7 +50,7 @@ const teamData = {
     developmentTeam: [
         {
             id: 1,
-            name: "Martina Anderson",
+            name: "Damilare Ayodele",
             position: "Lead Developer",
             image: Person1,
             width: 250,
@@ -88,7 +88,7 @@ const teamData = {
         },
         {
             id: 2,
-            name: "Joshua Patterson",
+            name: "Joshua Abioye",
             position: "Graphics Designer",
             image: Person8,
             width: 250,
@@ -97,7 +97,7 @@ const teamData = {
         },
         {
             id: 3,
-            name: "Sophia Richardson",
+            name: "Florence Okafor",
             position: "Media Specialist",
             image: Person9,
             width: 250,
@@ -107,7 +107,7 @@ const teamData = {
         {
             id: 4,
             name: "Morris Anderson",
-            position: "Content Creator",
+            position: "Head Of Socials",
             image: Person4,
             width: 250,
             height: 300,

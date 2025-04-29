@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import CTAButton from "./ctaButton"
-import worksImage from '../assets/middle.jpeg';
+import worksImage from '../assets/images/works-image.jpg';
 
 export default function OurWorks() {
   const [isMobile, setIsMobile] = useState(false);

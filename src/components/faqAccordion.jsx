@@ -4,7 +4,8 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "./ui/accordion";
-import RightImage from "../assets/images/faq.jpeg";
+import RightImage from "../assets/faq.jpg";
+
 
 const faqData = [
     {
@@ -88,7 +89,7 @@ export default function FAQAccordion() {
 
                     {/* Right side  */}
                     <div className="hidden lg:block w-full lg:w-1/2">
-                        <div className="rounded-lg overflow-hidden h-full">
+                        <div className="rounded-lg overflow-hidden h-[400px] ">
                             <img
                                 src={RightImage}
                                 alt="FAQ Illustration"

@@ -1,13 +1,13 @@
-import FAQAccordion from '@/components/faqAccordion'
-import ContactHero from '../components/contactHero'
-import LocationSection from '../components/location'
+import FAQAccordion from '@/components/FaqAccordion'
+import ContactHero from '../components/ContactHero'
+import LocationSection from '../components/Location'
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-  
+
 
 function ContactUs() {
-    const location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     if (location.hash) {
@@ -19,14 +19,14 @@ function ContactUs() {
       }
     }
   }, [location]);
-    return (
-        <div className='w-[100vw] overflow-hidden'>
-            <ContactHero />
-            <LocationSection />
-            <FAQAccordion />
-           
-        </div>
-    )
+  return (
+    <div className='w-[100vw] overflow-hidden'>
+      <ContactHero />
+      <LocationSection />
+      <FAQAccordion />
+
+    </div>
+  )
 }
 
 export default ContactUs

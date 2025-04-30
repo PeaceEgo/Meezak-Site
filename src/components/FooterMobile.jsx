@@ -6,12 +6,12 @@ import instagramIcon from '../assets/icons/instagram-icon.svg';
 
 function FooterMobile() {
   return (
-    <footer className="bg-[rgba(7,24,86,1)] text-white pl-12 pr-12 flex items-center justify-center min-h-[676px] min-w-[390px] ">
-      <div className="w-[100%] mx-auto">
+    <footer className="bg-[rgba(7,24,86,1)] text-white flex items-center justify-center min-h-[676px] w-full ">
+      <div className=" mx-auto">
         {/* Main Footer Content */}
         <div className="flex flex-col items-center gap-8 w-[342px] h-[356px]">
           {/* Container for Company and Support */}
-          <div className="flex justify-start gap-[88px] flex-wrap w-full">
+          <div className="flex justify-center gap-[74px] flex-wrap w-full ">
             {/* Company Section */}
             <div className="flex flex-col items-start">
               <h3 className="text-[18px] font-[700] mb-2">COMPANY</h3>
@@ -52,9 +52,9 @@ function FooterMobile() {
           </div>
 
           {/* Container for Our Works and Contact Info */}
-          <div className="flex justify-around  w-full gap-[64px]">
+          <div className="flex justify-center gap-[64px]  w-full ">
             {/* Our Works Section */}
-            <div className="flex flex-col items-start w-[180px]">
+            <div className="flex flex-col items-start">
               <h3 className="text-[18px] font-[700] mb-2  w-[114px]">OUR WORKS</h3>
               <ul className="space-y-1">
                 <li>
@@ -70,7 +70,7 @@ function FooterMobile() {
             </div>
 
             {/* Contact Info */}
-            <div className="flex flex-col items-start ">
+            <div className="flex flex-col items-start w-[130px]">
               <h3 className="text-[18px] font-[700] mb-2">CONTACT</h3>
               <p className="text-[12px] font-[400] text-[rgba(255,255,255,1)] flex items-center justify-center mb-2 ">
                 
@@ -78,7 +78,7 @@ function FooterMobile() {
               </p>
               <p className="text-[12px] font-[400] text-[rgba(255,255,255,1)] flex items-center justify-center mb-2">
                
-                info@meezaktechnologies.com
+                info@meezaktechno <br /> logies.com
               </p>
               <p className="text-[12px] font-[400] text-[rgba(255,255,255,1)] flex items-center justify-center">
                

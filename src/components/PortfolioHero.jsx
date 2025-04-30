@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-
-// Import placeholder image (replace with actual image path)
+import CTAButton from "./ctaButton"
 import worksImage from '../assets/images/works-image.jpg';
 
 export default function OurWorks() {
@@ -44,7 +43,7 @@ export default function OurWorks() {
           <img
             src={worksImage || "/placeholder.svg"}
             alt="Our Works"
-            className="w-full h-full object-cover rounded-[8px]"
+            className="w-full h-full object-cover  rounded-[8px] object-top-center"
           />
         </div>
 
@@ -90,28 +89,12 @@ export default function OurWorks() {
           </div>
 
           {/* Button */}
-          <button
-            className={
-              isMobile
-                ? "w-[140px] h-[48px] gap-6 rounded-lg border py-[10px] px-4 text-[14px] font-medium"
-                : "w-[200px] h-[48px] gap-6 rounded-lg border bg-white py-[10px] px-4 text-[14px] font-medium"
-            }
-            style={
-              isMobile
-                ? {
-                    borderColor: "rgba(204, 90, 113, 1)",
-                    backgroundColor: "rgba(204, 90, 113, 1)",
-                    color: "rgba(255, 255, 255, 1)",
-                  }
-                : {
-                    borderColor: "rgba(204, 90, 113, 1)",
-                    backgroundColor: "rgba(255, 255, 255, 1)",
-                    color: "rgba(204, 90, 113, 1)",
-                  }
-            }
-          >
-            Work With Us
-          </button>
+         
+          <div>
+                        
+                        <CTAButton to="/contact" text="Work With Us" />
+
+                    </div>
         </div>
       </div>
       </div>

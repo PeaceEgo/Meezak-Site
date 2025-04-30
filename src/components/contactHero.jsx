@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Mail, Phone } from "lucide-react"
 import ChatIcon from "../assets/icons/chats.svg"
+import emailjs from "@emailjs/browser";
 
 export default function ContactHero() {
     const [formData, setFormData] = useState({
@@ -22,16 +23,39 @@ export default function ContactHero() {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("Form submitted:", formData)
-
-        alert("Form submitted successfully!")
-        setFormData({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            message: "",
-        })
-    }
+ // EmailJS send function
+ emailjs
+ .send(
+   import.meta.env.VITE_APP_EMAILJS_SERVICE_ID, // Service ID from .env
+   import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID, // Template ID from .env
+   {
+     firstName: formData.firstName,
+     lastName: formData.lastName,
+     email: formData.email,
+     phone: formData.phone,
+     message: formData.message,
+   },
+   import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY // Public Key from .env
+ )
+ .then(
+   (result) => {
+     alert("Message sent successfully!");
+     console.log(result.text);
+     // Reset form after successful submission
+     setFormData({
+       firstName: "",
+       lastName: "",
+       email: "",
+       phone: "",
+       message: "",
+     });
+   },
+   (error) => {
+     alert("Failed to send message. Please try again.");
+     console.log(error.text);
+   }
+ );
+};
 
     return (
         <section className="w-[100vw] relative overflow-hidden bg-[#F5F6F5]">

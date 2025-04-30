@@ -12,7 +12,7 @@ function Layout() {
                 <div className="fixed bottom-8 right-8 z-50">
                     <button
                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                        className="bg-gray-100 p-3 rounded-full shadow-md hover:bg-gray-200 transition-colors duration-300"
+                        className="bg-gray-100 p-3 rounded-full shadow-md hover:bg-gray-200 transition-colors duration-300 focus:outline-none"
                         aria-label="Scroll to top"
                     >
                         <svg

@@ -1,5 +1,5 @@
 import Person1 from "../assets/images/lead-dev.jpeg";
-import Person2 from "../assets/images/productM.jpeg";
+import Person2 from "../assets/images/ProductM.jpeg";
 import Person3 from "../assets/images/hr.jpeg";
 import Person9 from "../assets/images/writer.jpeg";  
 import Person5 from "../assets/images/frontend1.JPG";

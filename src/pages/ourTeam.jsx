@@ -1,5 +1,5 @@
-import OurTeamSection from "@/components/teamHero"
-import TeamGallery from "@/components/teamGallery"
+import OurTeamSection from "@/components/TeamHero"
+import TeamGallery from "@/components/TeamGallery"
 import GetStarted from "@/components/GetStarted"
 
 function OurTeam() {

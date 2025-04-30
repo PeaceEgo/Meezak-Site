@@ -1,13 +1,13 @@
-import FAQAccordion from "@/components/faqAccordion"
-import ServicesSection from "@/components/ourServicesCards"
-import OurServicesHero from "@/components/ourServicesHero"
+import FAQAccordion from "@/components/FaqAccordion"
+import ServicesSection from "@/components/OurServicesCards"
+import OurServicesHero from "@/components/OurServicesHero"
 
 function OurServices() {
   return (
     <div>
-      <OurServicesHero/>
-          <ServicesSection/>
-          <FAQAccordion/>
+      <OurServicesHero />
+      <ServicesSection />
+      <FAQAccordion />
     </div>
   )
 }

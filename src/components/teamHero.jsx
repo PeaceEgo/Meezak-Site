@@ -2,7 +2,7 @@
 import { useState } from "react"
 // import { Link } from "react-router-dom"
 import heroImage from "../assets/images/office.svg"
-import CTAButton from "./ctaButton"
+import CTAButton from "./CtaButton"
 
 const OurTeamSection = () => {
     const [isHovered, setIsHovered] = useState(false)
@@ -32,11 +32,11 @@ const OurTeamSection = () => {
                     </p>
 
                     <div>
-                        
+
                         <CTAButton to="/contact" text="Work With Us" />
 
                     </div>
-                    
+
                 </div>
             </div>
             <div className="mt-10 border-t-2 border-gray-300 pt-8 w-[100vw]">

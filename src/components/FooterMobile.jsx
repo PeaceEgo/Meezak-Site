@@ -7,7 +7,7 @@ import instagramIcon from '../assets/icons/instagram-icon.svg';
 function FooterMobile() {
   return (
     <footer className="bg-[rgba(7,24,86,1)] text-white pl-12 pr-12 flex items-center justify-center h-[676px] w-[390px] ">
-      <div className=" mx-auto">
+      <div className="w-[100%] mx-auto">
         {/* Main Footer Content */}
         <div className="flex flex-col items-center gap-8 w-[342px] h-[356px]">
           {/* Container for Company and Support */}

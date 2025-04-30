@@ -234,7 +234,7 @@ function Header() {
             <div className="relative">
               <div className="flex justify-between items-center">
                 <Link
-                  to="/ourServices"
+                  to="/services"
                   className={`text-[14px] font-medium py-4 px-6 rounded-[20px] flex-1 ${isActive("/services") || isActive("/works") ? "bg-blue-50 text-[rgba(7,24,86,1)]" : "text-[rgba(7,24,86,1)]"}`}
                   onClick={handleLinkClick}
                 >

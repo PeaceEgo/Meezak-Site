@@ -10,7 +10,7 @@ export default function TeamSection() {
 
   const teamMembers = [
     {
-      name: "Kazeem",
+      name: "Kazeem Olawale",
       role: "C.E.O",
       image: teamMember1,
       bgColor: "rgba(204,90,113,1)",

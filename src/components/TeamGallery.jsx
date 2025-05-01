@@ -12,7 +12,7 @@ const teamData = {
     boardOfDirectors: [
         {
             id: 1,
-            name: "Kazeem",
+            name: "Kazeem Olawale",
             position: "CEO",
             image: Person1,
             width: 250,

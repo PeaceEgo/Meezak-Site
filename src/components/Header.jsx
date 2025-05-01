@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import whatsappLogo from '../assets/images/whatsapp-logo.svg';
 import meezakLogo from '../assets/images/header-logo.svg';
 import hamburgerIcon from '../assets/icons/hamburger.png';
@@ -11,6 +11,12 @@ function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const location = useLocation();
+
+  // Refs for dropdown menus (desktop and mobile)
+  const aboutDropdownRefDesktop = useRef(null);
+  const servicesDropdownRefDesktop = useRef(null);
+  const aboutDropdownRefMobile = useRef(null);
+  const servicesDropdownRefMobile = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -41,6 +47,55 @@ function Header() {
     setIsAboutOpen(false); // Close About dropdown
   };
 
+  // Handle clicks outside the dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Desktop: About Us dropdown
+      if (
+        isAboutOpen &&
+        aboutDropdownRefDesktop.current &&
+        !aboutDropdownRefDesktop.current.contains(event.target)
+      ) {
+        setIsAboutOpen(false);
+      }
+
+      // Desktop: Services dropdown
+      if (
+        isServicesOpen &&
+        servicesDropdownRefDesktop.current &&
+        !servicesDropdownRefDesktop.current.contains(event.target)
+      ) {
+        setIsServicesOpen(false);
+      }
+
+      // Mobile: About Us dropdown
+      if (
+        isAboutOpen &&
+        aboutDropdownRefMobile.current &&
+        !aboutDropdownRefMobile.current.contains(event.target)
+      ) {
+        setIsAboutOpen(false);
+      }
+
+      // Mobile: Services dropdown
+      if (
+        isServicesOpen &&
+        servicesDropdownRefMobile.current &&
+        !servicesDropdownRefMobile.current.contains(event.target)
+      ) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    // Add event listener to the document
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isAboutOpen, isServicesOpen]); // Re-run effect when dropdown states change
+
   return (
     <header className="bg-white shadow-md fixed w-full top-0 z-50">
       {/* Desktop Header */}
@@ -64,7 +119,7 @@ function Header() {
           </Link>
 
           {/* About Us with Dropdown */}
-          <div className="relative">
+          <div className="relative" ref={aboutDropdownRefDesktop}>
             <div className="flex items-center">
               <Link
                 to="/about"
@@ -104,7 +159,7 @@ function Header() {
           </div>
 
           {/* Services with Dropdown */}
-          <div className="relative">
+          <div className="relative" ref={servicesDropdownRefDesktop}>
             <div className="flex items-center">
               <Link
                 to="/services"
@@ -163,7 +218,7 @@ function Header() {
             <img src={meezakLogo || "/placeholder.svg"} alt="Meezak Logo" className="w-[100px] h-[36px]" />
           </Link>
         </div>
-        <button onClick={toggleMenu} className="text-gray-600 focus:outline-none">
+        <button onClick={toggleMenu} className="text-gray-600 focus:outline-none outline-none border-none">
           <img
             src={isMenuOpen ? cancelIcon : hamburgerIcon}
             alt={isMenuOpen ? "Cancel Icon" : "Hamburger Icon"}
@@ -190,7 +245,7 @@ function Header() {
             </Link>
 
             {/* About Us with Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={aboutDropdownRefMobile}>
               <div className="flex justify-between items-center">
                 <Link
                   to="/about"
@@ -199,7 +254,7 @@ function Header() {
                 >
                   About Us
                 </Link>
-                <button onClick={toggleAboutDropdown} className="p-4 focus:outline-none">
+                <button onClick={toggleAboutDropdown} className="p-4 focus:outline-none outline-none border-none">
                   <svg
                     className={`w-5 h-5 text-[rgba(7,24,86,1)] transition-transform duration-300 ${isAboutOpen ? "rotate-180" : "rotate-0"}`}
                     fill="none"
@@ -231,7 +286,7 @@ function Header() {
             </div>
 
             {/* Services with Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={servicesDropdownRefMobile}>
               <div className="flex justify-between items-center">
                 <Link
                   to="/services"
@@ -240,7 +295,7 @@ function Header() {
                 >
                   Services
                 </Link>
-                <button onClick={toggleServicesDropdown} className="p-4 focus:outline-none">
+                <button onClick={toggleServicesDropdown} className="p-4 focus:outline-none outline-none border-none">
                   <svg
                     className={`w-5 h-5 text-[rgba(7,24,86,1)] transition-transform duration-300 ${isServicesOpen ? "rotate-180" : "rotate-0"}`}
                     fill="none"

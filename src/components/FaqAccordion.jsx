@@ -72,10 +72,10 @@ export default function FAQAccordion() {
                                 <AccordionItem
                                     key={index}
                                     value={`item-${index}`}
-                                    className="bg-white rounded-lg shadow-md border-none"
+                                    className="rounded-lg shadow-md border-none"
                                 >
                                     <AccordionTrigger
-                                        className="text-2x1 font-medium text-[#071856] p-4 hover:no-underline focus:outline-none focus:ring-0"
+                                        className="text-2x1 font-medium text-[#071856] p-4 hover:no-underline border-none outline-none focus:outline-none focus:ring-0"
                                     >
                                         {item.question}
                                     </AccordionTrigger>

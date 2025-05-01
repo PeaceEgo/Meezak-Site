@@ -1,6 +1,5 @@
-
-import { useRef, useEffect } from "react"
-import Avatar from "../assets/Avatar.svg"
+import { useState, useEffect, useRef } from "react";
+import Avatar from "../assets/Avatar.svg";
 
 const testimonials = [
     {
@@ -33,78 +32,60 @@ const testimonials = [
         position: "CEO, GLOSTARS",
         avatar: Avatar,
     },
-]
+];
 
 export default function TestimonialSlider() {
-    const sliderRef = useRef(null)
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const sliderRef = useRef(null);
 
-    
+    // Detect mobile view
     useEffect(() => {
-        const slider = sliderRef.current
-        if (!slider) return
+        const checkScreenSize = () => {
+            const width = window.innerWidth;
+            setIsMobile(width < 768);
+        };
 
-        let isDown = false
-        let startX
-        let scrollLeft
-
-        const handleMouseDown = (e) => {
-            isDown = true
-            slider.classList.add("cursor-grabbing")
-            startX = e.pageX - slider.offsetLeft
-            scrollLeft = slider.scrollLeft
-        }
-
-        const handleMouseLeave = () => {
-            isDown = false
-            slider.classList.remove("cursor-grabbing")
-        }
-
-        const handleMouseUp = () => {
-            isDown = false
-            slider.classList.remove("cursor-grabbing")
-        }
-
-        const handleMouseMove = (e) => {
-            if (!isDown) return
-            e.preventDefault()
-            const x = e.pageX - slider.offsetLeft
-            const walk = (x - startX) * 2 
-            slider.scrollLeft = scrollLeft - walk
-        }
-
-        const handleTouchStart = (e) => {
-            isDown = true
-            startX = e.touches[0].pageX - slider.offsetLeft
-            scrollLeft = slider.scrollLeft
-        }
-
-        const handleTouchMove = (e) => {
-            if (!isDown) return
-            const x = e.touches[0].pageX - slider.offsetLeft
-            const walk = (x - startX) * 2
-            slider.scrollLeft = scrollLeft - walk
-        }
-
-        slider.addEventListener("mousedown", handleMouseDown)
-        slider.addEventListener("mouseleave", handleMouseLeave)
-        slider.addEventListener("mouseup", handleMouseUp)
-        slider.addEventListener("mousemove", handleMouseMove)
-
-        slider.addEventListener("touchstart", handleTouchStart)
-        slider.addEventListener("touchend", handleMouseUp)
-        slider.addEventListener("touchmove", handleTouchMove)
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
 
         return () => {
-            slider.removeEventListener("mousedown", handleMouseDown)
-            slider.removeEventListener("mouseleave", handleMouseLeave)
-            slider.removeEventListener("mouseup", handleMouseUp)
-            slider.removeEventListener("mousemove", handleMouseMove)
+            window.removeEventListener("resize", checkScreenSize);
+        };
+    }, []);
 
-            slider.removeEventListener("touchstart", handleTouchStart)
-            slider.removeEventListener("touchend", handleMouseUp)
-            slider.removeEventListener("touchmove", handleTouchMove)
+    // Handle touch events to update currentIndex
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX;
+        sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
+    };
+
+    const handleTouchMove = (e) => {
+        if (!sliderRef.current) return;
+
+        const touchStart = Number(sliderRef.current.getAttribute("data-touchstart") || 0);
+        const currentTouch = e.touches[0].clientX;
+        const diff = touchStart - currentTouch;
+
+        if (diff > 5) {
+            setCurrentIndex((prev) => Math.min(prev + 1, testimonials.length - 1));
+        } else if (diff < -5) {
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
         }
-    }, [])
+
+        sliderRef.current.removeAttribute("data-touchstart");
+    };
+
+    // Smooth scrolling based on currentIndex
+    useEffect(() => {
+        if (sliderRef.current && isMobile) {
+            const itemWidth = sliderRef.current.querySelector("div").offsetWidth;
+            sliderRef.current.scrollTo({
+                left: currentIndex * itemWidth,
+                behavior: "smooth",
+            });
+        }
+    }, [currentIndex, isMobile]);
 
     const renderStars = (rating) => {
         return Array(rating)
@@ -119,13 +100,12 @@ export default function TestimonialSlider() {
                 >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
-            ))
-    }
+            ));
+    };
 
     return (
         <div className="bg-[#061345] py-16 px-4 md:px-8 text-white">
             <div className="max-w-7xl mx-auto">
-                
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold mb-4">Our Trusted Clients</h2>
                     <p className="max-w-2xl mx-auto text-blue-200">
@@ -137,7 +117,9 @@ export default function TestimonialSlider() {
                 {/* Mobile Slider */}
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory cursor-grab scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {testimonials.map((testimonial) => (
@@ -150,7 +132,7 @@ export default function TestimonialSlider() {
                             <p className="text-blue-200 mb-3 flex-grow">{testimonial.quote}</p>
                             <div className="flex items-center">
                                 <img
-                                    src={testimonial.avatar}
+                                    src={testimonial.avatar || "/placeholder.svg"}
                                     alt={testimonial.author}
                                     className="w-10 h-10 rounded-full mr-3"
                                 />
@@ -163,14 +145,14 @@ export default function TestimonialSlider() {
                     ))}
                 </div>
 
-                {/* Tablet View  */}
+                {/* Tablet View */}
                 <div className="hidden md:grid lg:hidden grid-cols-2 gap-6">
                     {testimonials.map((testimonial) => (
                         <div key={testimonial.id} className="bg-[#071856] p-6 rounded-lg shadow-lg flex flex-col">
                             <div className="flex mb-2">{renderStars(testimonial.rating)}</div>
                             <h3 className="text-xl font-semibold mb-3">{testimonial.title}</h3>
                             <p className="text-blue-200 mb-3 flex-grow">{testimonial.quote}</p>
-                            <div className="flex items-center ">
+                            <div className="flex items-center">
                                 <img
                                     src={testimonial.avatar || "/placeholder.svg"}
                                     alt={testimonial.author}
@@ -188,7 +170,6 @@ export default function TestimonialSlider() {
                 {/* Desktop View */}
                 <div className="hidden lg:block relative h-[450px]">
                     <div className="absolute w-full h-full perspective-[1200px]">
-                      
                         <div
                             className="absolute left-[5%] top-1/2 -translate-y-1/2 w-[30%] bg-[#071856] p-6 rounded-lg shadow-xl flex flex-col transform -rotate-12 z-10"
                             style={{ transformStyle: "preserve-3d" }}
@@ -198,7 +179,7 @@ export default function TestimonialSlider() {
                             <p className="text-blue-200 mb-3 flex-grow">{testimonials[0].quote}</p>
                             <div className="flex items-center">
                                 <img
-                                    src={testimonials[0].avatar}
+                                    src={testimonials[0].avatar || "/placeholder.svg"}
                                     alt={testimonials[0].author}
                                     className="w-10 h-10 rounded-full mr-3"
                                 />
@@ -209,7 +190,6 @@ export default function TestimonialSlider() {
                             </div>
                         </div>
 
-                
                         <div
                             className="absolute left-[48%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] bg-[#071856] p-6 rounded-lg shadow-2xl flex flex-col z-20"
                             style={{ transformStyle: "preserve-3d" }}
@@ -253,5 +233,5 @@ export default function TestimonialSlider() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -8,7 +8,7 @@ const OurTeamSection = () => {
     const [isHovered, setIsHovered] = useState(false)
 
     return (
-        <section className="bg-white py-16 overflow-hidden">
+        <section className="bg-white py-0 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mt-16">
                 {/* Team Image */}
                 <div className="mb-8 rounded-lg overflow-hidden shadow-lg  mx-auto w-[342px] h-[174px] sm:w-full sm:h-auto">

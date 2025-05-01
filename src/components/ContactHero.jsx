@@ -127,7 +127,7 @@ export default function ContactHero() {
                             </div>
 
                             {/* Phone Numbers */}
-                            <div className="bg-gradient-to-r from-[#290359] to-[#5807BF] p-[3px] rounded-md shadow-lg mb-4">
+                            <div className="bg-gradient-to-r from-[#290359] to-[#5807BF] p-[1px] rounded-md shadow-lg mb-4">
                                 <div
                                     className="rounded-md p-5"
                                     style={{
@@ -151,7 +151,7 @@ export default function ContactHero() {
                             </div>
 
                             {/* Email Addresses */}
-                            <div className="bg-gradient-to-r from-[#290359] to-[#5807BF] p-[3px] rounded-md shadow-lg">
+                            <div className="bg-gradient-to-r from-[#290359] to-[#5807BF] p-[1px] rounded-md shadow-lg">
                                 <div
                                     className="rounded-md p-5"
                                     style={{

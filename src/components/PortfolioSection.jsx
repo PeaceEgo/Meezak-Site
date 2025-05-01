@@ -14,14 +14,14 @@ const eCommerceProjects = [
     id: 1,
     title: "TradeFlair Limited",
     description: "e-Commerce Website Development for a product and service rendering company in Lagos State, Nigeria.",
-    tags: ["Website Design & Development", "UI/UX Design", "SEO"],
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: eCommerceImage1,
   },
   {
     id: 2,
     title: "TradeFlair Limited",
     description: "e-Commerce Website Development for a product and service rendering company in Lagos State, Nigeria.",
-    tags: ["Website Design & Development", "UI/UX Design", "SEO"],
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: eCommerceImage2,
   },
 ];
@@ -31,14 +31,14 @@ const fintechProjects = [
     id: 3,
     title: "Fintech Solution Co.",
     description: "Fintech platform development for a financial services company in Lagos State, Nigeria.",
-    tags: ["Website Design & Development", "UI/UX Design", "SEO"],
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: fintechImage1,
   },
   {
     id: 4,
     title: "Fintech Solution Co.",
     description: "Fintech platform development for a financial services company in Lagos State, Nigeria.",
-    tags: ["Website Design & Development", "UI/UX Design", "SEO"],
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: fintechImage2,
   },
 ];
@@ -48,14 +48,14 @@ const portfolioProjects = [
     id: 5,
     title: "Portfolio Showcase",
     description: "Portfolio website for a creative agency in Lagos State, Nigeria.",
-    tags: ["Website Design & Development", "UI/UX Design", "SEO"],
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: portfolioImage1,
   },
   {
     id: 6,
     title: "Portfolio Showcase",
     description: "Portfolio website for a creative agency in Lagos State, Nigeria.",
-    tags: ["Website Design & Development", "UI/UX Design", "SEO"],
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: portfolioImage2,
   },
 ];
@@ -155,10 +155,10 @@ export default function PortfolioSection() {
           ? mobileProjects.map((project) => (
               <div
                 key={`${activeFilter}-${project.id}`}
-                className="w-[342px] h-[304.4493px] flex flex-col animate-slide-in b "
+                className="w-[342px] h-[304.4493px] flex flex-col animate-slide-in "
               >
                 {/* Project Card */}
-                <div className="w-[342px] h-[340 .4493px] flex flex-col bg-[#0718560D] rounded-[12px]">
+                <div className="w-[342px] h-[340 .4493px] flex flex-col bg-[#0718560D] rounded-[12px] ">
                   {/* Image */}
                   <div className="w-[342px] h-[174px] rounded-lg">
                     <img
@@ -168,12 +168,12 @@ export default function PortfolioSection() {
                     />
                   </div>
                   {/* Text Container */}
-                  <div className="w-[342px] h-[157px] flex flex-col gap-6 mt-4">
+                  <div className="w-[330px] h-[157px] flex justify-center flex-col gap-4 mt-4 px-4 whitespace-normal">
                     <h3 className="font-outfit font-semibold text-[20px] leading-[100%] tracking-[0%] ">
                       {project.title}
                     </h3>
-                    <div className="w-[342px] h-[44px]">
-                      <p className="font-outfit font-normal text-[16px] leading-[22px] tracking-[0%]">
+                    <div className="w-[342px] min-h-[44px] ">
+                      <p className="font-outfit font-normal text-[16px] leading-[22px] tracking-[0%] w-[320px] ">
                         {project.description}
                       </p>
                     </div>
@@ -233,7 +233,7 @@ export default function PortfolioSection() {
                           />
                         </div>
                         {/* Text Container */}
-                        <div className="w-[560px] h-[157px] flex flex-col gap-6 mt-4">
+                        <div className="w-[560px] h-[157px] flex flex-col gap-6 mt-4  ">
                           <h3 className="font-outfit font-semibold text-[20px] leading-[100%] tracking-[0%] ">
                             {project.title}
                           </h3>

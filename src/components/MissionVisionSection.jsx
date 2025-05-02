@@ -20,7 +20,7 @@ export default function MissionVisionSection() {
           {missionVisionServices.map((service, index) => (
             <div
               key={index}
-              className="relative w-[344px] md:w-[568px] md:h-[292px] h-[185px] overflow-hidden rounded-[8px] border-2 border-solid"
+              className="relative w-[344px] md:w-[568px] md:h-[292px] h-[185px] overflow-hidden  border-2 border-solid"
               style={{
                 background: "rgba(88, 7, 191, 0.2)",
                 borderImage: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%) 1",

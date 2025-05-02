@@ -1,11 +1,10 @@
-
-import { useRef, useEffect } from "react"
-import office1 from "../assets/workSpace1.jpeg"
-import office2 from "../assets/workSpace2.jpeg"
-import office3 from "../assets/workSpace3.jpeg"
-import office4 from "../assets/middle.jpeg"
-import office5 from "../assets/workSpace5.jpeg"
-import office6 from "../assets/workSpace6.jpeg"
+import { useState, useEffect, useRef } from "react";
+import office1 from "../assets/workSpace1.jpeg";
+import office2 from "../assets/workSpace2.jpeg";
+import office3 from "../assets/workSpace3.jpeg";
+import office4 from "../assets/middle.jpeg";
+import office5 from "../assets/workSpace5.jpeg";
+import office6 from "../assets/workSpace6.jpeg";
 
 const workspaceImages = [
     {
@@ -38,77 +37,60 @@ const workspaceImages = [
         src: office6,
         alt: "Modern office interior with partitions",
     },
-]
+];
 
 export default function WorkspaceGallery() {
-    const sliderRef = useRef(null)
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const sliderRef = useRef(null);
 
+    // Detect mobile view
     useEffect(() => {
-        const slider = sliderRef.current
-        if (!slider) return
+        const checkScreenSize = () => {
+            const width = window.innerWidth;
+            setIsMobile(width < 768);
+        };
 
-        let isDown = false
-        let startX
-        let scrollLeft
-
-        const handleMouseDown = (e) => {
-            isDown = true
-            slider.classList.add("cursor-grabbing")
-            startX = e.pageX - slider.offsetLeft
-            scrollLeft = slider.scrollLeft
-        }
-
-        const handleMouseLeave = () => {
-            isDown = false
-            slider.classList.remove("cursor-grabbing")
-        }
-
-        const handleMouseUp = () => {
-            isDown = false
-            slider.classList.remove("cursor-grabbing")
-        }
-
-        const handleMouseMove = (e) => {
-            if (!isDown) return
-            e.preventDefault()
-            const x = e.pageX - slider.offsetLeft
-            const walk = (x - startX) * 2
-            slider.scrollLeft = scrollLeft - walk
-        }
-
-        const handleTouchStart = (e) => {
-            isDown = true
-            startX = e.touches[0].pageX - slider.offsetLeft
-            scrollLeft = slider.scrollLeft
-        }
-
-        const handleTouchMove = (e) => {
-            if (!isDown) return
-            const x = e.touches[0].pageX - slider.offsetLeft
-            const walk = (x - startX) * 2
-            slider.scrollLeft = scrollLeft - walk
-        }
-
-        slider.addEventListener("mousedown", handleMouseDown)
-        slider.addEventListener("mouseleave", handleMouseLeave)
-        slider.addEventListener("mouseup", handleMouseUp)
-        slider.addEventListener("mousemove", handleMouseMove)
-
-        slider.addEventListener("touchstart", handleTouchStart)
-        slider.addEventListener("touchend", handleMouseUp)
-        slider.addEventListener("touchmove", handleTouchMove)
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
 
         return () => {
-            slider.removeEventListener("mousedown", handleMouseDown)
-            slider.removeEventListener("mouseleave", handleMouseLeave)
-            slider.removeEventListener("mouseup", handleMouseUp)
-            slider.removeEventListener("mousemove", handleMouseMove)
+            window.removeEventListener("resize", checkScreenSize);
+        };
+    }, []);
 
-            slider.removeEventListener("touchstart", handleTouchStart)
-            slider.removeEventListener("touchend", handleMouseUp)
-            slider.removeEventListener("touchmove", handleTouchMove)
+    // Handle touch events to update currentIndex
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX;
+        sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
+    };
+
+    const handleTouchMove = (e) => {
+        if (!sliderRef.current) return;
+
+        const touchStart = Number(sliderRef.current.getAttribute("data-touchstart") || 0);
+        const currentTouch = e.touches[0].clientX;
+        const diff = touchStart - currentTouch;
+
+        if (diff > 5) {
+            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
+        } else if (diff < -5) {
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
         }
-    }, [])
+
+        sliderRef.current.removeAttribute("data-touchstart");
+    };
+
+    // Smooth scrolling based on currentIndex
+    useEffect(() => {
+        if (sliderRef.current && isMobile) {
+            const itemWidth = sliderRef.current.querySelector("div").offsetWidth;
+            sliderRef.current.scrollTo({
+                left: currentIndex * itemWidth,
+                behavior: "smooth",
+            });
+        }
+    }, [currentIndex, isMobile]);
 
     return (
         <section className="bg-white py-16 px-4 md:px-8 overflow-hidden">
@@ -139,7 +121,9 @@ export default function WorkspaceGallery() {
 
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory cursor-grab scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scrollbar-hide"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {workspaceImages.map((image) => (
@@ -208,5 +192,5 @@ export default function WorkspaceGallery() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

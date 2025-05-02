@@ -57,10 +57,15 @@ export default function TeamSection() {
   }, []);
 
   return (
+<<<<<<< HEAD
     <section className="bg-white py-10 ">
       <div className="w-[390px] md:w-full mx-auto px-4">``
+=======
+    <section className="bg-white py-16">
+      <div className="w-[390px] md:w-full mx-auto px-4 ">
+>>>>>>> 7d3af3507cbdeec68c0300ede32d7769fa741b15
         {/* Small Container with "TEAM MEMBERS" */}
-        <div className="text-center mb-4">
+        <div className="text-center mb-4 ">
           <span
             className="inline-block w-[108px] md:w-[125px] px-3 py-1 md:text-[12px] md:font-[600] text-[10px] font-[500] rounded-full"
             style={{

@@ -57,7 +57,7 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <section className="bg-white py-16 ">
+    <section className="bg-white py-10 ">
       <div className="w-[390px] md:w-full mx-auto px-4">``
         {/* Small Container with "TEAM MEMBERS" */}
         <div className="text-center mb-4">

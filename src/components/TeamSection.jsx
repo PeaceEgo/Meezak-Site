@@ -41,7 +41,6 @@ export default function TeamSection() {
     },
   ];
 
-  // Check screen size for mobile responsiveness
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
@@ -57,13 +56,8 @@ export default function TeamSection() {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <section className="bg-white py-10 ">
-      <div className="w-[390px] md:w-full mx-auto px-4">``
-=======
     <section className="bg-white py-16">
       <div className="w-[390px] md:w-full mx-auto px-4 ">
->>>>>>> 7d3af3507cbdeec68c0300ede32d7769fa741b15
         {/* Small Container with "TEAM MEMBERS" */}
         <div className="text-center mb-4 ">
           <span
@@ -88,8 +82,8 @@ export default function TeamSection() {
         <div
           className={
             isMobile
-              ? "grid grid-cols-2 gap-2 justify-items-center w-[340px]" // Mobile: 2-2-1 layout with 8px gap
-              : "flex justify-center gap-0" // Desktop: Side by side with no gap
+              ? "grid grid-cols-2 gap-2 justify-items-center w-[340px]" 
+              : "flex justify-center gap-0" 
           }
         >
           

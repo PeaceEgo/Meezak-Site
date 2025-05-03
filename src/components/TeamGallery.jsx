@@ -60,7 +60,7 @@ const teamData = {
         {
             id: 2,
             name: "Michael Olaleye",
-            position: "Frontend Developer",
+            position: "Software Developer",
             image: Person6,
             width: 250,
             height: 300,
@@ -69,7 +69,7 @@ const teamData = {
         {
             id: 3,
             name: "Peace Nnorom",
-            position: "Frontend Developer",
+            position: "Software Developer",
             image: Person5,
             width: 250,
             height: 300,

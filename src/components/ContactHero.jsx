@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Mail, Phone } from "lucide-react"
 import ChatIcon from "../assets/icons/chats.svg"
 import emailjs from "@emailjs/browser";
@@ -11,6 +11,32 @@ export default function ContactHero() {
         phone: "",
         message: "",
     })
+    const [isFormValid, setIsFormValid] = useState(false)
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email)
+    }
+
+    const validatePhone = (phone) => {
+        if (!phone.trim()) return true
+        const cleanPhone = phone.replace(/\D/g, '')
+        if (phone.startsWith('+')) {
+            return cleanPhone.length >= 10 
+        }
+        return cleanPhone.length === 11
+    }
+
+    useEffect(() => {
+        const isValid =
+            formData.firstName.trim() !== "" &&
+            formData.lastName.trim() !== "" &&
+            formData.email.trim() !== "" &&
+            validateEmail(formData.email) &&
+            validatePhone(formData.phone) &&
+            formData.message.trim() !== ""
+        setIsFormValid(isValid)
+    }, [formData])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -22,54 +48,51 @@ export default function ContactHero() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (!isFormValid) return
+
         console.log("Form submitted:", formData)
- // EmailJS send function
- emailjs
- .send(
-   import.meta.env.VITE_APP_EMAILJS_SERVICE_ID, // Service ID from .env
-   import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID, // Template ID from .env
-   {
-     firstName: formData.firstName,
-     lastName: formData.lastName,
-     email: formData.email,
-     phone: formData.phone,
-     message: formData.message,
-   },
-   import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY 
- )
- .then(
-   (result) => {
-     alert("Message sent successfully!");
-     console.log(result.text);
-     // Reset form after successful submission
-     setFormData({
-       firstName: "",
-       lastName: "",
-       email: "",
-       phone: "",
-       message: "",
-     });
-   },
-   (error) => {
-     alert("Failed to send message. Please try again.");
-     console.log(error.text);
-   }
- );
-};
+        emailjs
+            .send(
+                import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+                {
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: formData.message,
+                },
+                import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+            )
+            .then(
+                (result) => {
+                    alert("Message sent successfully!")
+                    console.log(result.text)
+                    setFormData({
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        phone: "",
+                        message: "",
+                    })
+                },
+                (error) => {
+                    alert("Failed to send message. Please try again.")
+                    console.log(error.text)
+                }
+            )
+    }
 
     return (
         <section className="w-[100vw] relative overflow-hidden bg-[#F5F6F5]">
-
-            {/* Background with gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#061345] to-[#071856] z-0"></div>
 
             <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
                 <div className="flex flex-col lg:flex-row md:flex-row items-center max-w-6xl mx-auto">
-
                     <div className="w-full lg:w-1/2 mt-20 lg:mb-0 text-white">
                         <div className="max-w-md">
                             <div
-                                className="absolute blur-xl rounded-full lg:bg-purple-600 opacity-30 "
+                                className="absolute blur-xl rounded-full lg:bg-purple-600 opacity-30"
                                 style={{
                                     top: "0%",
                                     left: "-5%",
@@ -96,7 +119,7 @@ export default function ContactHero() {
                                 }}
                             />
                             <div
-                                className="absolute blur-xl rounded-full lg:bg-purple-600 opacity-30 "
+                                className="absolute blur-xl rounded-full lg:bg-purple-600 opacity-30"
                                 style={{
                                     top: "80%",
                                     right: "0%",
@@ -119,7 +142,6 @@ export default function ContactHero() {
                                 <h2 className="text-4xl font-bold mb-6">
                                     <span className="text-[#CC5A71]">We'd love</span> to hear from you
                                 </h2>
-
                                 <p className="mb-10 text-white text-sm">
                                     Have a project in mind? Need expert advice on web development, UI/UX, or digital solutions? We're here
                                     to help!
@@ -153,7 +175,7 @@ export default function ContactHero() {
                             {/* Email Addresses */}
                             <div className="bg-gradient-to-r from-[#290359] to-[#5807BF] p-[1px] rounded-md shadow-lg">
                                 <div
-                                    className="rounded-md p-5"
+                                    className="rounded-sm p-5"
                                     style={{
                                         background: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%)",
                                         backdropFilter: "blur(200px)",
@@ -175,15 +197,12 @@ export default function ContactHero() {
                             </div>
                         </div>
                     </div>
-
-                    {/*  Contact Form */}
-                    <div className=" lg:w-1/2 mt-10 lg:mt-0">
-                        <div className="bg-white rounded-lg p-8 shadow-lg max-w-lg mx-auto">
+                    <div className="lg:w-1/2 mt-10 lg:mt-0">
+                        <div className="bg-white rounded-sm p-8 shadow-lg max-w-lg mx-auto">
                             <h3 className="text-xl font-bold text-blue-900 mb-1">Reach Out To Us</h3>
                             <p className="text-sm text-gray-600 mb-6">
                                 You can reach out with this details from anywhere in the world
                             </p>
-
                             <form onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-2 gap-4 mb-4">
                                     <div>
@@ -193,7 +212,7 @@ export default function ContactHero() {
                                             placeholder="First Name"
                                             value={formData.firstName}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-2  bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                             required
                                         />
                                     </div>
@@ -209,7 +228,6 @@ export default function ContactHero() {
                                         />
                                     </div>
                                 </div>
-
                                 <div className="grid grid-cols-2 gap-4 mb-4">
                                     <div>
                                         <input
@@ -218,9 +236,13 @@ export default function ContactHero() {
                                             placeholder="Email Address"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className={`w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.email && !validateEmail(formData.email) ? 'border-red-500' : ''
+                                                }`}
                                             required
                                         />
+                                        {formData.email && !validateEmail(formData.email) && (
+                                            <p className="text-red-500 text-xs mt-1">Please enter a valid email</p>
+                                        )}
                                     </div>
                                     <div>
                                         <input
@@ -229,11 +251,14 @@ export default function ContactHero() {
                                             placeholder="Phone Number"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full bg-white px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className={`w-full bg-white px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.phone && !validatePhone(formData.phone) ? 'border-red-500' : ''
+                                                }`}
                                         />
+                                        {formData.phone && !validatePhone(formData.phone) && (
+                                            <p className="text-red-500 text-xs mt-1">Phone must be 11 digits or start with country code</p>
+                                        )}
                                     </div>
                                 </div>
-
                                 <div className="mb-6">
                                     <textarea
                                         name="message"
@@ -245,11 +270,14 @@ export default function ContactHero() {
                                         required
                                     ></textarea>
                                 </div>
-
                                 <div className="flex justify-center item-center">
                                     <button
                                         type="submit"
-                                        className=" w-1/2 bg-[#071856] hover:bg-blue-800 text-white font-medium py-3 px-3 rounded-lg transition duration-300"
+                                        disabled={!isFormValid}
+                                        className={`w-1/2 font-medium py-3 px-3 rounded-lg transition focus:outline-none duration-300 ${isFormValid
+                                                ? 'bg-[#071856] hover:bg-blue-800 text-white'
+                                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                            }`}
                                     >
                                         Send
                                     </button>

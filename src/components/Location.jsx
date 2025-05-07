@@ -23,7 +23,7 @@ const LocationSection = () => {
                             <h3 className="text-sm font-medium uppercase text-[#071856] mb-2">Our Location</h3>
                             <h2 className="text-3xl font-bold text-[#071856] mb-6">Connecting Near and Far</h2>
 
-                            <p className="text-[#071856]  text-sm mb-4">You can Visit us at:</p>
+                            <p className="text-[#071856]  text-sm ">You can Visit us at:</p>
 
                             <address className="not-italic text-[#071856] font-medium text-lg leading-relaxed">
                                 35, Oba Akran Avenue, Empire Building,

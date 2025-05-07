@@ -35,7 +35,7 @@ export default function ContactHero() {
      phone: formData.phone,
      message: formData.message,
    },
-   import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY // Public Key from .env
+   import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY 
  )
  .then(
    (result) => {

@@ -45,55 +45,73 @@ export default function WorkspaceGallery() {
     const [isMobile, setIsMobile] = useState(false);
     const sliderRef = useRef(null);
     const slidesRef = useRef([]);
+    const touchStartX = useRef(null);
+    const isAnimating = useRef(false);
 
     // Detect mobile view
     useEffect(() => {
         const checkScreenSize = () => {
-            const width = window.innerWidth;
-            setIsMobile(width < 768);
+            setIsMobile(window.innerWidth < 768);
         };
 
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
 
-        return () => {
-            window.removeEventListener("resize", checkScreenSize);
-        };
+        return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
-    // Handle touch events to update currentIndex
-    const handleTouchStart = (e) => {
-        const touchDown = e.touches[0].clientX;
-        sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
-    };
-
-    const handleTouchMove = (e) => {
-        if (!sliderRef.current) return;
-
-        const touchStart = Number(sliderRef.current.getAttribute("data-touchstart") || 0);
-        const currentTouch = e.touches[0].clientX;
-        const diff = touchStart - currentTouch;
-
-        if (diff > 50) { // Increased threshold for better UX
-            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
-        } else if (diff < -50) {
-            setCurrentIndex((prev) => Math.max(prev - 1, 0));
-        }
-
-        sliderRef.current.removeAttribute("data-touchstart");
-    };
-
-    // GSAP animation for sliding
+    // GSAP animation
     useEffect(() => {
-        if (sliderRef.current && isMobile && slidesRef.current.length > 0) {
-            const itemWidth = slidesRef.current[0].offsetWidth;
+        if (sliderRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
+            isAnimating.current = true;
+            const itemWidth = slidesRef.current[0].offsetWidth + 16; // Include gap
             gsap.to(sliderRef.current, {
                 x: -currentIndex * itemWidth,
                 duration: 0.8,
                 ease: "power2.out",
+                onComplete: () => {
+                    isAnimating.current = false;
+                },
             });
         }
     }, [currentIndex, isMobile]);
+
+    // Handle touch events
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+        if (touchStartX.current === null || isAnimating.current) return;
+
+        const currentTouch = e.touches[0].clientX;
+        const diff = touchStartX.current - currentTouch;
+
+        if (diff > 50) {
+            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
+            touchStartX.current = null;
+        } else if (diff < -50) {
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+            touchStartX.current = null;
+        }
+    };
+
+    const handleTouchEnd = () => {
+        touchStartX.current = null;
+    };
+
+    // Navigation button handlers
+    const goToPrevious = () => {
+        if (!isAnimating.current) {
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+        }
+    };
+
+    const goToNext = () => {
+        if (!isAnimating.current) {
+            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
+        }
+    };
 
     return (
         <section className="bg-white py-16 px-4 md:px-8 overflow-hidden">
@@ -122,26 +140,43 @@ export default function WorkspaceGallery() {
                     </p>
                 </div>
 
-                <div
-                    ref={sliderRef}
-                    className="md:hidden flex overflow-x-hidden gap-4 pb-8 snap-x snap-mandatory scrollbar-hide"
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                >
-                    {workspaceImages.map((image, index) => (
-                        <div
-                            key={image.id}
-                            ref={(el) => (slidesRef.current[index] = el)}
-                            className="min-w-[85%] snap-center"
-                        >
-                            <img
-                                src={image.src || "/placeholder.svg"}
-                                alt={image.alt}
-                                className="w-full h-64 object-cover rounded-lg"
-                            />
-                        </div>
-                    ))}
+                <div className="relative md:hidden">
+                    <div
+                        ref={sliderRef}
+                        className="flex gap-4 pb-8"
+                        style={{ willChange: "transform" }}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
+                        {workspaceImages.map((image, index) => (
+                            <div
+                                key={image.id}
+                                ref={(el) => (slidesRef.current[index] = el)}
+                                className="min-w-[85%] flex-shrink-0"
+                            >
+                                <img
+                                    src={image.src || "/placeholder.svg"}
+                                    alt={image.alt}
+                                    className="w-full h-64 object-cover rounded-lg"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <button
+                        onClick={goToPrevious}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-75 hover:opacity-100 disabled:opacity-50"
+                        disabled={currentIndex === 0}
+                    >
+                        ←
+                    </button>
+                    <button
+                        onClick={goToNext}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-75 hover:opacity-100 disabled:opacity-50"
+                        disabled={currentIndex === workspaceImages.length - 1}
+                    >
+                        →
+                    </button>
                 </div>
 
                 <div className="hidden md:grid lg:hidden grid-cols-2 gap-4">
@@ -174,7 +209,6 @@ export default function WorkspaceGallery() {
                             className="w-full h-full object-cover"
                         />
                     </div>
-
                     <div className="col-span-2 row-span-1 overflow-hidden rounded-lg">
                         <img
                             src={workspaceImages[3].src || "/placeholder.svg"}

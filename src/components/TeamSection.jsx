@@ -10,7 +10,7 @@ export default function TeamSection() {
 
   const teamMembers = [
     {
-      name: "Kazeem",
+      name: "Kazeem Olawale",
       role: "C.E.O",
       image: teamMember1,
       bgColor: "rgba(204,90,113,1)",
@@ -41,7 +41,6 @@ export default function TeamSection() {
     },
   ];
 
-  // Check screen size for mobile responsiveness
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
@@ -83,8 +82,8 @@ export default function TeamSection() {
         <div
           className={
             isMobile
-              ? "grid grid-cols-2 gap-2 justify-items-center w-[340px]" // Mobile: 2-2-1 layout with 8px gap
-              : "flex justify-center gap-0" // Desktop: Side by side with no gap
+              ? "grid grid-cols-2 gap-2 justify-items-center w-[340px]" 
+              : "flex justify-center gap-0" 
           }
         >
           

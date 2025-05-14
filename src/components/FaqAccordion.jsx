@@ -108,7 +108,7 @@ export default function FAQAccordion() {
 
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#071856]">
-                        Our Common and Frequently Questions
+                        Our Common and Frequently Asked Questions
                         <br />
                         Answered for Convenience
                     </h2>

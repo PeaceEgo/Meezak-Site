@@ -130,7 +130,7 @@ export default function WorkspaceGallery() {
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {workspaceImages.map((image) => (
-                        <div key={image.id} className="min-w-[85%] snap-center">
+                        <div key={image.id} className="min-w-[85%] ">
                             <img
                                 src={image.src || "/placeholder.svg"}
                                 alt={image.alt}

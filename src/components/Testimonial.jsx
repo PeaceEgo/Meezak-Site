@@ -125,7 +125,7 @@ export default function TestimonialSlider() {
                     {testimonials.map((testimonial) => (
                         <div
                             key={testimonial.id}
-                            className="min-w-[85%] snap-center bg-[#071856] p-6 rounded-lg shadow-lg flex flex-col"
+                            className="min-w-[85%] bg-[#071856] p-6 rounded-lg shadow-lg flex flex-col"
                         >
                             <div className="flex mb-2">{renderStars(testimonial.rating)}</div>
                             <h3 className="text-xl font-semibold mb-3">{testimonial.title}</h3>

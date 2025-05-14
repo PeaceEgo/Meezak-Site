@@ -117,7 +117,7 @@ export default function TestimonialSlider() {
                 {/* Mobile Slider */}
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto gap-6 pb-8  scrollbar-hide"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}

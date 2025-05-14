@@ -64,7 +64,13 @@ export default function WorkspaceGallery() {
     useEffect(() => {
         if (sliderRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
             isAnimating.current = true;
-            const itemWidth = slidesRef.current[0].offsetWidth + 16; // Include gap
+            // Calculate slide width with fallback
+            const slide = slidesRef.current[0];
+            const rectWidth = slide.getBoundingClientRect().width;
+            const fallbackWidth = window.innerWidth * 0.85; // 85% of viewport as fallback
+            const itemWidth = rectWidth > 0 ? rectWidth + 16 : fallbackWidth + 16; // Include 16px gap
+            console.log("Item width:", itemWidth, "Rect width:", rectWidth, "Fallback width:", fallbackWidth);
+            console.log("Target X:", -currentIndex * itemWidth);
             gsap.to(sliderRef.current, {
                 x: -currentIndex * itemWidth,
                 duration: 0.8,
@@ -143,8 +149,8 @@ export default function WorkspaceGallery() {
                 <div className="relative md:hidden">
                     <div
                         ref={sliderRef}
-                        className="flex gap-4 pb-8"
-                        style={{ willChange: "transform" }}
+                        className="flex gap-4 pb-8 touch-pan-x"
+                        style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
@@ -153,12 +159,14 @@ export default function WorkspaceGallery() {
                             <div
                                 key={image.id}
                                 ref={(el) => (slidesRef.current[index] = el)}
-                                className="min-w-[85%] flex-shrink-0"
+                                className="w-[85vw] flex-shrink-0 box-border"
+                                style={{ maxWidth: "85vw" }}
                             >
                                 <img
                                     src={image.src || "/placeholder.svg"}
                                     alt={image.alt}
                                     className="w-full h-64 object-cover rounded-lg"
+                                    style={{ display: "block", maxWidth: "100%" }}
                                 />
                             </div>
                         ))}

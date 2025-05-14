@@ -86,10 +86,11 @@ export default function WorkspaceGallery() {
     // Smooth scrolling based on currentIndex
     useEffect(() => {
         if (sliderRef.current && isMobile) {
-            const containerWidth = sliderRef.current.offsetWidth;
-            const itemWidth = containerWidth; // One image per slide
+            const item = sliderRef.current.querySelector("div");
+            const itemWidth = item.offsetWidth; // 85% of container width
+            const gap = 16; // Tailwind gap-4 = 16px
             sliderRef.current.scrollTo({
-                left: currentIndex * itemWidth,
+                left: currentIndex * (itemWidth + gap),
                 behavior: "smooth",
             });
         }
@@ -124,13 +125,13 @@ export default function WorkspaceGallery() {
 
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scrollbar-hide"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {workspaceImages.map((image) => (
-                        <div key={image.id} className="min-w-full snap-center">
+                        <div key={image.id} className="min-w-[85%] snap-center">
                             <img
                                 src={image.src || "/placeholder.svg"}
                                 alt={image.alt}

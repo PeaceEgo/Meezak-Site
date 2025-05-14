@@ -59,7 +59,7 @@ export default function WorkspaceGallery() {
         };
     }, []);
 
-    // Handle touch events to update currentIndex with circular navigation
+    // Handle touch events to update currentIndex
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX;
         sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
@@ -72,16 +72,12 @@ export default function WorkspaceGallery() {
         const currentTouch = e.touches[0].clientX;
         const diff = touchStart - currentTouch;
 
-        if (diff > 5) {
-            // Swipe right: move to next image, loop to first if at the end
-            setCurrentIndex((prev) => 
-                prev === workspaceImages.length - 1 ? 0 : prev + 1
-            );
-        } else if (diff < -5) {
-            // Swipe left: move to previous image, loop to last if at the start
-            setCurrentIndex((prev) => 
-                prev === 0 ? workspaceImages.length - 1 : prev - 1
-            );
+        if (diff > 5 && currentIndex < workspaceImages.length - 1) {
+            // Swipe right: move to next image, stop at last image
+            setCurrentIndex((prev) => prev + 1);
+        } else if (diff < -5 && currentIndex > 0) {
+            // Swipe left: move to previous image, allow going back from last
+            setCurrentIndex((prev) => prev - 1);
         }
 
         sliderRef.current.removeAttribute("data-touchstart");
@@ -90,7 +86,8 @@ export default function WorkspaceGallery() {
     // Smooth scrolling based on currentIndex
     useEffect(() => {
         if (sliderRef.current && isMobile) {
-            const itemWidth = sliderRef.current.querySelector("div").offsetWidth;
+            const containerWidth = sliderRef.current.offsetWidth;
+            const itemWidth = containerWidth; // One image per slide
             sliderRef.current.scrollTo({
                 left: currentIndex * itemWidth,
                 behavior: "smooth",
@@ -127,13 +124,13 @@ export default function WorkspaceGallery() {
 
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {workspaceImages.map((image) => (
-                        <div key={image.id} className="min-w-[85%] snap-center">
+                        <div key={image.id} className="min-w-full snap-center">
                             <img
                                 src={image.src || "/placeholder.svg"}
                                 alt={image.alt}

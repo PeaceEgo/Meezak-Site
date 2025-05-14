@@ -106,18 +106,7 @@ export default function WorkspaceGallery() {
         touchStartX.current = null;
     };
 
-    // Navigation button handlers
-    const goToPrevious = () => {
-        if (!isAnimating.current) {
-            setCurrentIndex((prev) => Math.max(prev - 1, 0));
-        }
-    };
-
-    const goToNext = () => {
-        if (!isAnimating.current) {
-            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
-        }
-    };
+    
 
     return (
         <section className="bg-white py-16 px-4 md:px-8 overflow-hidden">
@@ -171,20 +160,7 @@ export default function WorkspaceGallery() {
                             </div>
                         ))}
                     </div>
-                    <button
-                        onClick={goToPrevious}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-75 hover:opacity-100 disabled:opacity-50"
-                        disabled={currentIndex === 0}
-                    >
-                        ←
-                    </button>
-                    <button
-                        onClick={goToNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-75 hover:opacity-100 disabled:opacity-50"
-                        disabled={currentIndex === workspaceImages.length - 1}
-                    >
-                        →
-                    </button>
+                    
                 </div>
 
                 <div className="hidden md:grid lg:hidden grid-cols-2 gap-4">

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import office1 from "../assets/workSpace1.jpeg";
 import office2 from "../assets/workSpace2.jpeg";
 import office3 from "../assets/workSpace3.jpeg";
@@ -43,11 +44,13 @@ export default function WorkspaceGallery() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const sliderRef = useRef(null);
+    const slidesRef = useRef([]);
 
     // Detect mobile view
     useEffect(() => {
         const checkScreenSize = () => {
-            setIsMobile(window.innerWidth < 768);
+            const width = window.innerWidth;
+            setIsMobile(width < 768);
         };
 
         checkScreenSize();
@@ -58,7 +61,7 @@ export default function WorkspaceGallery() {
         };
     }, []);
 
-    // Handle touch events for manual sliding
+    // Handle touch events to update currentIndex
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX;
         sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
@@ -71,26 +74,23 @@ export default function WorkspaceGallery() {
         const currentTouch = e.touches[0].clientX;
         const diff = touchStart - currentTouch;
 
-        if (diff > 5 && currentIndex < workspaceImages.length - 1) {
-            // Swipe right: move to next image, stop at last
-            setCurrentIndex((prev) => prev + 1);
-        } else if (diff < -5 && currentIndex > 0) {
-            // Swipe left: move to previous image
-            setCurrentIndex((prev) => prev - 1);
+        if (diff > 50) { // Increased threshold for better UX
+            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
+        } else if (diff < -50) {
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
         }
 
         sliderRef.current.removeAttribute("data-touchstart");
     };
 
-    // Smooth scrolling for one image at a time
+    // GSAP animation for sliding
     useEffect(() => {
-        if (sliderRef.current && isMobile) {
-            const item = sliderRef.current.querySelector("div");
-            const itemWidth = item.offsetWidth; // 85% of container
-            const gap = 16; // Tailwind gap-4 = 16px
-            sliderRef.current.scrollTo({
-                left: currentIndex * (itemWidth + gap),
-                behavior: "smooth",
+        if (sliderRef.current && isMobile && slidesRef.current.length > 0) {
+            const itemWidth = slidesRef.current[0].offsetWidth;
+            gsap.to(sliderRef.current, {
+                x: -currentIndex * itemWidth,
+                duration: 0.8,
+                ease: "power2.out",
             });
         }
     }, [currentIndex, isMobile]);
@@ -124,13 +124,17 @@ export default function WorkspaceGallery() {
 
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-4 pb-8 scrollbar-hide"
+                    className="md:hidden flex overflow-x-hidden gap-4 pb-8 snap-x snap-mandatory scrollbar-hide"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
-                    {workspaceImages.map((image) => (
-                        <div key={image.id} className="min-w-[85%] ">
+                    {workspaceImages.map((image, index) => (
+                        <div
+                            key={image.id}
+                            ref={(el) => (slidesRef.current[index] = el)}
+                            className="min-w-[85%] snap-center"
+                        >
                             <img
                                 src={image.src || "/placeholder.svg"}
                                 alt={image.alt}

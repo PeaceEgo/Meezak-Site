@@ -47,8 +47,7 @@ export default function WorkspaceGallery() {
     // Detect mobile view
     useEffect(() => {
         const checkScreenSize = () => {
-            const width = window.innerWidth;
-            setIsMobile(width < 768);
+            setIsMobile(window.innerWidth < 768);
         };
 
         checkScreenSize();
@@ -59,7 +58,7 @@ export default function WorkspaceGallery() {
         };
     }, []);
 
-    // Handle touch events to update currentIndex
+    // Handle touch events for manual sliding
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX;
         sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
@@ -73,21 +72,21 @@ export default function WorkspaceGallery() {
         const diff = touchStart - currentTouch;
 
         if (diff > 5 && currentIndex < workspaceImages.length - 1) {
-            // Swipe right: move to next image, stop at last image
+            // Swipe right: move to next image, stop at last
             setCurrentIndex((prev) => prev + 1);
         } else if (diff < -5 && currentIndex > 0) {
-            // Swipe left: move to previous image, allow going back from last
+            // Swipe left: move to previous image
             setCurrentIndex((prev) => prev - 1);
         }
 
         sliderRef.current.removeAttribute("data-touchstart");
     };
 
-    // Smooth scrolling based on currentIndex
+    // Smooth scrolling for one image at a time
     useEffect(() => {
         if (sliderRef.current && isMobile) {
             const item = sliderRef.current.querySelector("div");
-            const itemWidth = item.offsetWidth; // 85% of container width
+            const itemWidth = item.offsetWidth; // 85% of container
             const gap = 16; // Tailwind gap-4 = 16px
             sliderRef.current.scrollTo({
                 left: currentIndex * (itemWidth + gap),
@@ -125,7 +124,7 @@ export default function WorkspaceGallery() {
 
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto gap-4 pb-8 scrollbar-hide"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}

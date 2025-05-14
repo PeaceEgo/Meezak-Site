@@ -59,7 +59,7 @@ export default function WorkspaceGallery() {
         };
     }, []);
 
-    // Handle touch events to update currentIndex
+    // Handle touch events to update currentIndex with circular navigation
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX;
         sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
@@ -73,9 +73,15 @@ export default function WorkspaceGallery() {
         const diff = touchStart - currentTouch;
 
         if (diff > 5) {
-            setCurrentIndex((prev) => Math.min(prev + 1, workspaceImages.length - 1));
+            // Swipe right: move to next image, loop to first if at the end
+            setCurrentIndex((prev) => 
+                prev === workspaceImages.length - 1 ? 0 : prev + 1
+            );
         } else if (diff < -5) {
-            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+            // Swipe left: move to previous image, loop to last if at the start
+            setCurrentIndex((prev) => 
+                prev === 0 ? workspaceImages.length - 1 : prev - 1
+            );
         }
 
         sliderRef.current.removeAttribute("data-touchstart");

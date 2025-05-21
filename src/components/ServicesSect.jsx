@@ -76,14 +76,11 @@ export default function ServicesSection() {
 
     useEffect(() => {
         if (carouselRef.current && isMobile) {
+            const cardWidth = 392; // Fixed card width
+            const cardPadding = 16; // 8px (px-2) on each side
+            const totalCardWidth = cardWidth + cardPadding;
             const viewportWidth = window.innerWidth;
             const containerPadding = 32; // 16px (px-4) on each side of .container
-            const cardPadding = 16; // 8px (px-2) on each side of card
-            const maxCardWidth = 392;
-            // Use smaller width if viewport is too narrow
-            const cardWidth = Math.min(maxCardWidth, viewportWidth - containerPadding - cardPadding);
-            const totalCardWidth = cardWidth + cardPadding;
-            // Center card in available viewport space
             const offset = (viewportWidth - cardWidth - cardPadding - containerPadding) / 2;
 
             // Debug logs
@@ -92,13 +89,14 @@ export default function ServicesSection() {
                 cardWidth,
                 totalCardWidth,
                 offset,
+                currentIndex,
                 translateX: -currentIndex * totalCardWidth + offset,
             });
 
             // Set container width to accommodate all cards
             carouselRef.current.style.width = `${services.length * totalCardWidth}px`;
 
-            // GSAP animation to slide and center the card
+            // GSAP animation to slide one card at a time
             gsap.to(carouselRef.current, {
                 x: -currentIndex * totalCardWidth + offset,
                 duration: 0.5,
@@ -110,12 +108,11 @@ export default function ServicesSection() {
     // Initialize carousel position on mount
     useEffect(() => {
         if (carouselRef.current && isMobile) {
-            const viewportWidth = window.innerWidth;
-            const containerPadding = 32; // 16px (px-4) on each side
-            const cardPadding = 16; // 8px (px-2) on each side
-            const maxCardWidth = 392;
-            const cardWidth = Math.min(maxCardWidth, viewportWidth - containerPadding - cardPadding);
+            const cardWidth = 392;
+            const cardPadding = 16;
             const totalCardWidth = cardWidth + cardPadding;
+            const viewportWidth = window.innerWidth;
+            const containerPadding = 32;
             const offset = (viewportWidth - cardWidth - cardPadding - containerPadding) / 2;
 
             carouselRef.current.style.width = `${services.length * totalCardWidth}px`;
@@ -123,66 +120,59 @@ export default function ServicesSection() {
         }
     }, [isMobile]);
 
-    const renderServiceCard = (service, index) => {
-        const viewportWidth = window.innerWidth;
-        const containerPadding = 32; // 16px (px-4) on each side
-        const cardPadding = 16; // 8px (px-2) on each side
-        const cardWidth = Math.min(392, viewportWidth - containerPadding - cardPadding);
-
-        return (
+    const renderServiceCard = (service, index) => (
+        <div
+            key={index}
+            className="relative overflow-hidden"
+            style={{
+                width: "392px",
+                height: "242px",
+                borderRadius: "8px",
+                border: "2px solid transparent",
+                backgroundClip: "padding-box",
+                backgroundImage: "linear-gradient(to bottom, rgba(88, 7, 191, 0.2), rgba(41, 3, 89, 0.2))",
+            }}
+        >
             <div
-                key={index}
-                className="relative overflow-hidden"
                 style={{
-                    width: `${cardWidth}px`,
-                    height: "242px",
-                    borderRadius: "8px",
-                    border: "2px solid transparent",
-                    backgroundClip: "padding-box",
-                    backgroundImage: "linear-gradient(to bottom, rgba(88, 7, 191, 0.2), rgba(41, 3, 89, 0.2))",
+                    position: "absolute",
+                    inset: 0,
+                    padding: "2px",
+                    borderRadius: "10px",
+                    background: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%)",
+                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                    pointerEvents: "none",
                 }}
-            >
-                <div
-                    style={{
-                        position: "absolute",
-                        inset: 0,
-                        padding: "2px",
-                        borderRadius: "10px",
-                        background: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%)",
-                        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                        WebkitMaskComposite: "xor",
-                        maskComposite: "exclude",
-                        pointerEvents: "none",
-                    }}
-                />
-                <div
-                    className="absolute rounded-full blur-xl bg-purple-600 opacity-100"
-                    style={{
-                        top: "30px",
-                        left: "30px",
-                        width: "50px",
-                        height: "50px",
-                    }}
-                />
-                <div
-                    className="absolute z-0"
-                    style={{
-                        bottom: "100px",
-                        right: "-100px",
-                        width: "250px",
-                        height: "250px",
-                        background: "linear-gradient(135deg, rgba(88, 7, 191, 0.7), rgba(41, 3, 89, 0.7))",
-                        filter: "blur(40px)",
-                        opacity: "1",
-                    }}
-                />
-                <div className="relative z-10 p-6 h-full flex flex-col justify-center">
-                    <h3 className="text-xl font-semibold mb-3 relative z-10">{service.title}</h3>
-                    <p className="text-gray-300">{service.description}</p>
-                </div>
+            />
+            <div
+                className="absolute rounded-full blur-xl bg-purple-600 opacity-100"
+                style={{
+                    top: "30px",
+                    left: "30px",
+                    width: "50px",
+                    height: "50px",
+                }}
+            />
+            <div
+                className="absolute z-0"
+                style={{
+                    bottom: "100px",
+                    right: "-100px",
+                    width: "250px",
+                    height: "250px",
+                    background: "linear-gradient(135deg, rgba(88, 7, 191, 0.7), rgba(41, 3, 89, 0.7))",
+                    filter: "blur(40px)",
+                    opacity: "1",
+                }}
+            />
+            <div className="relative z-10 p-6 px-8 h-full flex flex-col justify-center">
+                <h3 className="text-xl font-semibold mb-3 relative z-10">{service.title}</h3>
+                <p className="text-gray-300">{service.description}</p>
             </div>
-        );
-    };
+        </div>
+    );
 
     return (
         <section
@@ -223,11 +213,7 @@ export default function ServicesSection() {
                                 <div
                                     key={index}
                                     className="flex-shrink-0 snap-center px-2"
-                                    style={{
-                                        width: `${
-                                            Math.min(392, window.innerWidth - 32 - 16)
-                                        }px`,
-                                    }}
+                                    style={{ width: "392px" }}
                                 >
                                     {renderServiceCard(service, index)}
                                 </div>

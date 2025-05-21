@@ -1,11 +1,14 @@
-import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useState, useEffect, useRef } from "react"
+import { gsap } from "gsap"
 
 export default function ServicesSection() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const [isTablet, setIsTablet] = useState(false);
-    const carouselRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [isMobile, setIsMobile] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
+    const carouselRef = useRef(null)
+    const slidesRef = useRef([])
+    const touchStartX = useRef(null)
+    const isAnimating = useRef(false)
 
     const services = [
         {
@@ -32,100 +35,76 @@ export default function ServicesSection() {
             title: "Business Website Design",
             description: "Professional and responsive websites tailored to your business needs",
         },
-    ];
+    ]
 
     useEffect(() => {
         const checkScreenSize = () => {
-            const width = window.innerWidth;
-            setIsMobile(width < 768);
-            setIsTablet(width >= 768 && width < 1024);
-        };
+            const width = window.innerWidth
+            setIsMobile(width < 768)
+            setIsTablet(width >= 768 && width < 1024)
+        }
 
-        checkScreenSize();
-        window.addEventListener("resize", checkScreenSize);
+        checkScreenSize()
+        window.addEventListener("resize", checkScreenSize)
 
         return () => {
-            window.removeEventListener("resize", checkScreenSize);
-        };
-    }, []);
+            window.removeEventListener("resize", checkScreenSize)
+        }
+    }, [])
+
+    // GSAP animation
+    useEffect(() => {
+        if (carouselRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
+            isAnimating.current = true
+            try {
+                const slide = slidesRef.current[0]
+                const rectWidth = slide?.getBoundingClientRect().width || 0
+                const fallbackWidth = window.innerWidth * 0.8 // 80% of viewport
+                const itemWidth = rectWidth > 0 ? rectWidth : fallbackWidth
+                gsap.to(carouselRef.current, {
+                    x: -currentIndex * itemWidth,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        isAnimating.current = false
+                    },
+                })
+            } catch (error) {
+                console.error("GSAP animation error:", error)
+                isAnimating.current = false
+            }
+        }
+    }, [currentIndex, isMobile])
 
     const handleTouchStart = (e) => {
-        const touchDown = e.touches[0].clientX;
-        carouselRef.current?.setAttribute("data-touchstart", touchDown.toString());
-    };
+        touchStartX.current = e.touches[0].clientX
+    }
 
     const handleTouchMove = (e) => {
-        if (!carouselRef.current) return;
+        if (touchStartX.current === null || isAnimating.current) return
 
-        const touchStart = Number(carouselRef.current.getAttribute("data-touchstart") || 0);
-        const currentTouch = e.touches[0].clientX;
-        const diff = touchStart - currentTouch;
+        const currentTouch = e.touches[0].clientX
+        const diff = touchStartX.current - currentTouch
 
         if (diff > 50) {
-            setCurrentIndex((prev) => Math.min(prev + 1, services.length - 1));
+            setCurrentIndex((prev) => Math.min(prev + 1, services.length - 1))
+            touchStartX.current = null
         } else if (diff < -50) {
-            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+            setCurrentIndex((prev) => Math.max(prev - 1, 0))
+            touchStartX.current = null
         }
-    };
+    }
 
     const handleTouchEnd = () => {
-        if (carouselRef.current) {
-            carouselRef.current.removeAttribute("data-touchstart");
-        }
-    };
+        touchStartX.current = null
+    }
 
-    useEffect(() => {
-        if (carouselRef.current && isMobile) {
-            const cardWidth = 392; // Fixed card width
-            const cardPadding = 16; // 8px (px-2) on each side
-            const totalCardWidth = cardWidth + cardPadding;
-            const viewportWidth = window.innerWidth;
-            const containerPadding = 32; // 16px (px-4) on each side of .container
-            const offset = (viewportWidth - cardWidth - cardPadding - containerPadding) / 2;
-
-            // Debug logs
-            console.log({
-                viewportWidth,
-                cardWidth,
-                totalCardWidth,
-                offset,
-                currentIndex,
-                translateX: -currentIndex * totalCardWidth + offset,
-            });
-
-            // Set container width to accommodate all cards
-            carouselRef.current.style.width = `${services.length * totalCardWidth}px`;
-
-            // GSAP animation to slide one card at a time
-            gsap.to(carouselRef.current, {
-                x: -currentIndex * totalCardWidth + offset,
-                duration: 0.5,
-                ease: "power2.out",
-            });
-        }
-    }, [currentIndex, isMobile, services.length]);
-
-    // Initialize carousel position on mount
-    useEffect(() => {
-        if (carouselRef.current && isMobile) {
-            const cardWidth = 392;
-            const cardPadding = 16;
-            const totalCardWidth = cardWidth + cardPadding;
-            const viewportWidth = window.innerWidth;
-            const containerPadding = 32;
-            const offset = (viewportWidth - cardWidth - cardPadding - containerPadding) / 2;
-
-            carouselRef.current.style.width = `${services.length * totalCardWidth}px`;
-            gsap.set(carouselRef.current, { x: offset });
-        }
-    }, [isMobile]);
-
-    const renderServiceCard = (service, index) => (
+    const renderServiceCard = (service, index, isMobileCard = false) => (
         <div
             key={index}
             className="relative overflow-hidden"
             style={{
-                width: "392px",
+                width: isMobileCard ? "80vw" : "min(392px, 90vw)", // 80vw for mobile, responsive for others
                 height: "242px",
                 borderRadius: "8px",
                 border: "2px solid transparent",
@@ -133,6 +112,7 @@ export default function ServicesSection() {
                 backgroundImage: "linear-gradient(to bottom, rgba(88, 7, 191, 0.2), rgba(41, 3, 89, 0.2))",
             }}
         >
+            {/* Border gradient */}
             <div
                 style={{
                     position: "absolute",
@@ -146,6 +126,8 @@ export default function ServicesSection() {
                     pointerEvents: "none",
                 }}
             />
+
+            {/* Left purple blur */}
             <div
                 className="absolute rounded-full blur-xl bg-purple-600 opacity-100"
                 style={{
@@ -155,6 +137,8 @@ export default function ServicesSection() {
                     height: "50px",
                 }}
             />
+
+            {/* Right gradient */}
             <div
                 className="absolute z-0"
                 style={{
@@ -167,12 +151,13 @@ export default function ServicesSection() {
                     opacity: "1",
                 }}
             />
-            <div className="relative z-10 p-6 px-8 h-full flex flex-col justify-center">
+
+            <div className="relative z-10 p-6 h-full flex flex-col justify-center">
                 <h3 className="text-xl font-semibold mb-3 relative z-10">{service.title}</h3>
                 <p className="text-gray-300">{service.description}</p>
             </div>
         </div>
-    );
+    )
 
     return (
         <section
@@ -200,43 +185,35 @@ export default function ServicesSection() {
                 </div>
 
                 {isMobile ? (
-                    <div className="relative overflow-hidden">
+                    <div
+                        className="relative overflow-x-hidden"
+                        style={{ width: "80vw", margin: "0 auto" }}
+                    >
                         <div
                             ref={carouselRef}
-                            className="flex snap-x snap-mandatory"
+                            className="flex gap-4 pb-8 touch-pan-x"
+                            style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
                             onTouchStart={handleTouchStart}
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
-                            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                         >
                             {services.map((service, index) => (
                                 <div
                                     key={index}
-                                    className="flex-shrink-0 snap-center px-2"
-                                    style={{ width: "392px" }}
+                                    ref={(el) => (slidesRef.current[index] = el)}
+                                    className="w-[80vw] flex-shrink-0"
                                 >
-                                    {renderServiceCard(service, index)}
+                                    {renderServiceCard(service, index, true)}
                                 </div>
-                            ))}
-                        </div>
-                        <div className="flex justify-center mt-4">
-                            {services.map((_, index) => (
-                                <button
-                                    key={index}
-                                    className={`w-3 h-3 mx-1 rounded-full ${
-                                        currentIndex === index ? "bg-purple-600" : "bg-gray-500"
-                                    }`}
-                                    onClick={() => setCurrentIndex(index)}
-                                />
                             ))}
                         </div>
                     </div>
                 ) : (
                     <div className={`grid gap-6 justify-items-center ${isTablet ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
-                        {services.map((service, index) => renderServiceCard(service, index))}
+                        {services.map((service, index) => renderServiceCard(service, index, false))}
                     </div>
                 )}
             </div>
         </section>
-    );
+    )
 }

@@ -207,6 +207,20 @@ export default function ServicesSection() {
                                 </div>
                             ))}
                         </div>
+                        {/* Pagination Dots */}
+                        <div className="flex justify-center mt-4 space-x-2">
+                            {services.map((_, index) => (
+                                <div
+                                    key={index}
+                                    className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
+                                        index === currentIndex
+                                            ? "bg-gradient-to-r from-[#5807BF] to-[#290359]"
+                                            : "bg-gray-500 opacity-50"
+                                    }`}
+                                    onClick={() => setCurrentIndex(index)}
+                                />
+                            ))}
+                        </div>
                     </div>
                 ) : (
                     <div className={`grid gap-6 justify-items-center ${isTablet ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>

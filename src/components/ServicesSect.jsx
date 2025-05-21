@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { gsap } from "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js";
+import { gsap } from "gsap";
 
 export default function ServicesSection() {
     const [currentIndex, setCurrentIndex] = useState(0);

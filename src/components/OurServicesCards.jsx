@@ -1,11 +1,10 @@
-
 import { useState } from "react"
 import service1 from "../assets/icons/serviceP1.svg"
 import service2 from "../assets/icons/serviceP1.svg"
 import service3 from "../assets/icons/serviceP2.svg"
 import service4 from "../assets/icons/serviceP3.png"
 import service5 from "../assets/icons/serviceP4.svg"
-
+import useMobileDetector from "@/hooks/useMobileDetector"
 
 const services = [
     {
@@ -66,31 +65,37 @@ const services = [
 
 const ServiceCard = ({ title, shortDescription, longDescription, image, bgColor, hoverColor, className }) => {
     const [isHovered, setIsHovered] = useState(false)
+    const isMobile = useMobileDetector()
+
+    const showHoveredState = isMobile || isHovered
 
     return (
         <div
             className={`relative h-[500px] p-8 transition-all duration-300 overflow-hidden group rounded-md ${className || ""}`}
             style={{
-                backgroundColor: isHovered ? hoverColor : bgColor,
-                color: isHovered ? "white" : "#071856",
+                backgroundColor: showHoveredState ? hoverColor : bgColor,
+                color: showHoveredState ? "white" : "#071856",
             }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={() => !isMobile && setIsHovered(true)}
+            onMouseLeave={() => !isMobile && setIsHovered(false)}
         >
             <div className="flex flex-col h-full">
                 <h3
-                    className={`text-xl font-bold mb-4 transition-colors duration-300 ${isHovered ? "text-white" : "text-[#071856]"}`}
+                    className={`text-xl font-bold mb-4 transition-colors duration-300 ${showHoveredState ? "text-white" : "text-[#071856]"}`}
                 >
                     {title}
                 </h3>
 
                 <div className="flex-1 flex flex-col justify-between text-start">
-                    <p className={`text-sm mb-4 transition-colors duration-300 ${isHovered ? "text-white" : "text-[#071856]"}`}>
+                    <p
+                        className={`text-sm mb-4 transition-colors duration-300 ${showHoveredState ? "text-white" : "text-[#071856]"}`}
+                    >
                         {shortDescription}
                     </p>
 
-                    {isHovered && (
-                        <div className="animate-fadeIn">
+                    {/* Always show long description on mobile, or when hovered on desktop */}
+                    {showHoveredState && (
+                        <div className={`${!isMobile && isHovered ? "animate-fadeIn" : ""}`}>
                             <p className="text-sm leading-relaxed text-white">{longDescription}</p>
                         </div>
                     )}
@@ -99,7 +104,7 @@ const ServiceCard = ({ title, shortDescription, longDescription, image, bgColor,
 
             <div className="absolute bottom-0 right-0 w-full h-1/3 pointer-events-none">
                 <img
-                    src={image }
+                    src={image || "/placeholder.svg"}
                     alt={title}
                     className="w-full h-full object-contain opacity-30 hover:opacity-10 transition-opacity duration-300"
                 />

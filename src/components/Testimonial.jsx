@@ -62,8 +62,8 @@ export default function TestimonialSlider() {
             try {
                 const slide = slidesRef.current[0];
                 const rectWidth = slide?.getBoundingClientRect().width || 0;
-                const fallbackWidth = window.innerWidth * 0.85; // 85% of viewport as fallback
-                const itemWidth = rectWidth > 0 ? rectWidth + 6 : fallbackWidth + 6; // Include 6px gap
+                const fallbackWidth = window.innerWidth * 0.85; // 85% of viewport
+                const itemWidth = rectWidth > 0 ? rectWidth : fallbackWidth; // Card width without gap
                 gsap.to(sliderRef.current, {
                     x: -currentIndex * itemWidth,
                     duration: 0.8,
@@ -132,35 +132,40 @@ export default function TestimonialSlider() {
 
                 {/* Mobile Slider */}
                 <div
-                    ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-6 pb-8 scrollbar-hide"
-                    style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
+                    className="md:hidden relative overflow-x-hidden"
+                    style={{ width: "85vw", margin: "0 auto" }}
                 >
-                    {testimonials.map((testimonial, index) => (
-                        <div
-                            key={testimonial.id}
-                            ref={(el) => (slidesRef.current[index] = el)}
-                            className="min-w-[85%] bg-[#071856] p-6 rounded-lg shadow-lg flex flex-col"
-                        >
-                            <div className="flex mb-2">{renderStars(testimonial.rating)}</div>
-                            <h3 className="text-xl font-semibold mb-3">{testimonial.title}</h3>
-                            <p className="text-blue-200 mb-3 flex-grow">{testimonial.quote}</p>
-                            <div className="flex items-center">
-                                <img
-                                    src={testimonial.avatar || "/placeholder.svg"}
-                                    alt={testimonial.author}
-                                    className="w-10 h-10 rounded-full mr-3"
-                                />
-                                <div>
-                                    <p className="font-medium">{testimonial.author}</p>
-                                    <p className="text-sm text-blue-300">{testimonial.position}</p>
+                    <div
+                        ref={sliderRef}
+                        className="flex gap-4 pb-8 touch-pan-x"
+                        style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
+                        {testimonials.map((testimonial, index) => (
+                            <div
+                                key={testimonial.id}
+                                ref={(el) => (slidesRef.current[index] = el)}
+                                className="w-[85vw] flex-shrink-0 bg-[#071856] p-6 rounded-lg shadow-lg flex flex-col box-border"
+                            >
+                                <div className="flex mb-2">{renderStars(testimonial.rating)}</div>
+                                <h3 className="text-xl font-semibold mb-3">{testimonial.title}</h3>
+                                <p className="text-blue-200 mb-3 flex-grow">{testimonial.quote}</p>
+                                <div className="flex items-center">
+                                    <img
+                                        src={testimonial.avatar || "/placeholder.svg"}
+                                        alt={testimonial.author}
+                                        className="w-10 h-10 rounded-full mr-3"
+                                    />
+                                    <div>
+                                        <p className="font-medium">{testimonial.author}</p>
+                                        <p className="text-sm text-blue-300">{testimonial.position}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
                 {/* Tablet View */}

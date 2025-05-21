@@ -104,7 +104,7 @@ export default function ServicesSection() {
             key={index}
             className="relative overflow-hidden"
             style={{
-                width: isMobileCard ? "80vw" : "min(392px, 90vw)", // 80vw for mobile, responsive for others
+                width: isMobileCard ? "80vw" : "min(392px, 90vw)",
                 height: "242px",
                 borderRadius: "8px",
                 border: "2px solid transparent",
@@ -191,7 +191,7 @@ export default function ServicesSection() {
                     >
                         <div
                             ref={carouselRef}
-                            className="flex gap-4 pb-8 touch-pan-x"
+                            className="flex snap-x snap-mandatory"
                             style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
                             onTouchStart={handleTouchStart}
                             onTouchMove={handleTouchMove}
@@ -201,7 +201,7 @@ export default function ServicesSection() {
                                 <div
                                     key={index}
                                     ref={(el) => (slidesRef.current[index] = el)}
-                                    className="w-[80vw] flex-shrink-0"
+                                    className="w-[80vw] flex-shrink-0 snap-center flex justify-center"
                                 >
                                     {renderServiceCard(service, index, true)}
                                 </div>

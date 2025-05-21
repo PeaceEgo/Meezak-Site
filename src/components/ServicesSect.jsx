@@ -5,7 +5,7 @@ export default function ServicesSection() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
-    const sliderRef = useRef(null);
+    const carouselRef = useRef(null);
     const slidesRef = useRef([]);
     const touchStartX = useRef(null);
     const isAnimating = useRef(false);
@@ -23,27 +23,26 @@ export default function ServicesSection() {
         },
         {
             id: 3,
-            title: "Server Provisioning",
+            title: "Server Processing",
             description: "Efficient and scalable server solutions for your applications",
         },
         {
             id: 4,
-            title: "Enterprise Web Development",
-            description: "Robust web applications for enterprise-level business requirements",
+            title: "Mobile App Development",
+            description: "Native and cross-platform mobile apps built with cutting-edge technologies",
         },
         {
             id: 5,
-            title: "Game Development",
-            description: "Engaging and interactive game solutions for various platforms",
+            title: "Server Processing",
+            description: "Efficient and scalable server solutions for your applications",
         },
         {
             id: 6,
-            title: "UI/UX Design",
-            description: "User-centered design for intuitive and visually appealing interfaces",
+            title: "Business Website Design",
+            description: "Professional and responsive websites tailored to your business needs",
         },
     ];
 
-    // Detect mobile and tablet views
     useEffect(() => {
         const checkScreenSize = () => {
             const width = window.innerWidth;
@@ -54,20 +53,30 @@ export default function ServicesSection() {
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
 
-        return () => window.removeEventListener("resize", checkScreenSize);
+        return () => {
+            window.removeEventListener("resize", checkScreenSize);
+        }
     }, []);
 
     // GSAP animation
     useEffect(() => {
-        if (sliderRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
+        if (carouselRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
             isAnimating.current = true;
             try {
                 const slide = slidesRef.current[0];
-                const cardWidth = 392; // Fixed card width from renderServiceCard
-                const gap = 16; // gap-4 = 16px
-                const itemWidth = cardWidth + gap; // Total width per slide (card + gap)
-                console.log("Calculated itemWidth:", itemWidth); // Debug
-                gsap.to(sliderRef.current, {
+                const cardWidth = slide?.getBoundingClientRect().width || 392; // Rendered card width
+                const itemWidth = cardWidth; // Slide by card width only
+                console.log(
+                    "Card width:",
+                    cardWidth,
+                    "Item width:",
+                    itemWidth,
+                    "Viewport width:",
+                    window.innerWidth,
+                    "Container width:",
+                    carouselRef.current.getBoundingClientRect().width
+                );
+                gsap.to(carouselRef.current, {
                     x: -currentIndex * itemWidth,
                     duration: 0.8,
                     ease: "power2.out",
@@ -201,25 +210,75 @@ export default function ServicesSection() {
                 </div>
 
                 {isMobile ? (
-                    <div
-                        className="md:hidden relative overflow-x-hidden"
-                        style={{ width: "392px", margin: "0 auto" }}
-                    >
+                    <div className="relative">
                         <div
-                            ref={sliderRef}
-                            className="flex gap-4 pb-8 touch-pan-x"
-                            style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
+                            ref={carouselRef}
+                            className="flex overflow-x-hidden snap-x snap-mandatory hide-scrollbar"
                             onTouchStart={handleTouchStart}
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
+                            style={{ scrollbarWidth: "none", msOverflowStyle: "none", willChange: "transform", WebkitOverflowScrolling: "touch" }}
                         >
                             {services.map((service, index) => (
-                                <div
-                                    key={service.id}
-                                    ref={(el) => (slidesRef.current[index] = el)}
-                                    className="flex-shrink-0 box-border"
-                                >
-                                    {renderServiceCard(service, index)}
+                                <div key={service.id} className="w-full flex-shrink-0 snap-center px-2">
+                                    <div
+                                        className="relative overflow-hidden mx-auto"
+                                        style={{
+                                            width: "100%",
+                                            maxWidth: "392px",
+                                            height: "242px",
+                                            borderRadius: "8px",
+                                            border: "2px solid transparent",
+                                            backgroundClip: "padding-box",
+                                            backgroundImage: "linear-gradient(to bottom, rgba(88, 7, 191, 0.2), rgba(41, 3, 89, 0.2))",
+                                        }}
+                                    >
+                                        {/* Border gradient */}
+                                        <div
+                                            style={{
+                                                position: "absolute",
+                                                inset: 0,
+                                                padding: "2px",
+                                                borderRadius: "8px",
+                                                background: "linear-gradient(249.14deg, #5807BF 0%, #290359 50.42%)",
+                                                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                                                WebkitMaskComposite: "xor",
+                                                maskComposite: "exclude",
+                                                pointerEvents: "none",
+                                            }}
+                                        />
+
+                                        {/* Left purple blur */}
+                                        <div
+                                            className="absolute rounded-full blur-xl bg-purple-600 opacity-50"
+                                            style={{
+                                                top: "10px",
+                                                left: "10px",
+                                                width: "100px",
+                                                height: "100px",
+                                            }}
+                                        />
+
+                                        {/* Right gradient */}
+                                        <div
+                                            className="absolute"
+                                            style={{
+                                                bottom: "100px",
+                                                right: "-100px",
+                                                width: "200px",
+                                                height: "200px",
+                                                background: "linear-gradient(135deg, #5807BF)",
+                                                filter: "blur(40px)",
+                                                opacity: "0.6",
+                                                zIndex: "1",
+                                            }}
+                                        />
+
+                                        <div className="relative z-10 p-6 h-full flex flex-col justify-center">
+                                            <h3 className="text-xl font-semibold mb-3 relative z-10">{service.title}</h3>
+                                            <p className="text-gray-300">{service.description}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Avatar from "../assets/Avatar.svg";
 
 const testimonials = [
@@ -38,54 +39,69 @@ export default function TestimonialSlider() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const sliderRef = useRef(null);
+    const slidesRef = useRef([]);
+    const touchStartX = useRef(null);
+    const isAnimating = useRef(false);
 
     // Detect mobile view
     useEffect(() => {
         const checkScreenSize = () => {
-            const width = window.innerWidth;
-            setIsMobile(width < 768);
+            setIsMobile(window.innerWidth < 768);
         };
 
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
 
-        return () => {
-            window.removeEventListener("resize", checkScreenSize);
-        };
+        return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
-    // Handle touch events to update currentIndex
+    // GSAP animation
+    useEffect(() => {
+        if (sliderRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
+            isAnimating.current = true;
+            try {
+                const slide = slidesRef.current[0];
+                const rectWidth = slide?.getBoundingClientRect().width || 0;
+                const fallbackWidth = window.innerWidth * 0.85; // 85% of viewport as fallback
+                const itemWidth = rectWidth > 0 ? rectWidth + 6 : fallbackWidth + 6; // Include 6px gap
+                gsap.to(sliderRef.current, {
+                    x: -currentIndex * itemWidth,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        isAnimating.current = false;
+                    },
+                });
+            } catch (error) {
+                console.error("GSAP animation error:", error);
+                isAnimating.current = false;
+            }
+        }
+    }, [currentIndex, isMobile]);
+
+    // Handle touch events
     const handleTouchStart = (e) => {
-        const touchDown = e.touches[0].clientX;
-        sliderRef.current?.setAttribute("data-touchstart", touchDown.toString());
+        touchStartX.current = e.touches[0].clientX;
     };
 
     const handleTouchMove = (e) => {
-        if (!sliderRef.current) return;
+        if (touchStartX.current === null || isAnimating.current) return;
 
-        const touchStart = Number(sliderRef.current.getAttribute("data-touchstart") || 0);
         const currentTouch = e.touches[0].clientX;
-        const diff = touchStart - currentTouch;
+        const diff = touchStartX.current - currentTouch;
 
-        if (diff > 5) {
+        if (diff > 50) {
             setCurrentIndex((prev) => Math.min(prev + 1, testimonials.length - 1));
-        } else if (diff < -5) {
+            touchStartX.current = null;
+        } else if (diff < -50) {
             setCurrentIndex((prev) => Math.max(prev - 1, 0));
+            touchStartX.current = null;
         }
-
-        sliderRef.current.removeAttribute("data-touchstart");
     };
 
-    // Smooth scrolling based on currentIndex
-    useEffect(() => {
-        if (sliderRef.current && isMobile) {
-            const itemWidth = sliderRef.current.querySelector("div").offsetWidth;
-            sliderRef.current.scrollTo({
-                left: currentIndex * itemWidth,
-                behavior: "smooth",
-            });
-        }
-    }, [currentIndex, isMobile]);
+    const handleTouchEnd = () => {
+        touchStartX.current = null;
+    };
 
     const renderStars = (rating) => {
         return Array(rating)
@@ -98,7 +114,7 @@ export default function TestimonialSlider() {
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
             ));
     };
@@ -117,14 +133,16 @@ export default function TestimonialSlider() {
                 {/* Mobile Slider */}
                 <div
                     ref={sliderRef}
-                    className="md:hidden flex overflow-x-auto gap-6 pb-8  scrollbar-hide"
+                    className="md:hidden flex overflow-x-auto gap-6 pb-8 scrollbar-hide"
+                    style={{ willChange: "transform", WebkitOverflowScrolling: "touch" }}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
-                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                    onTouchEnd={handleTouchEnd}
                 >
-                    {testimonials.map((testimonial) => (
+                    {testimonials.map((testimonial, index) => (
                         <div
                             key={testimonial.id}
+                            ref={(el) => (slidesRef.current[index] = el)}
                             className="min-w-[85%] bg-[#071856] p-6 rounded-lg shadow-lg flex flex-col"
                         >
                             <div className="flex mb-2">{renderStars(testimonial.rating)}</div>

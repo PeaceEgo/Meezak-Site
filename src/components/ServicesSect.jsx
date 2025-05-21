@@ -43,38 +43,35 @@ export default function ServicesSection() {
         },
     ];
 
+    // Detect mobile and tablet views
     useEffect(() => {
         const checkScreenSize = () => {
             const width = window.innerWidth;
             setIsMobile(width < 768);
             setIsTablet(width >= 768 && width < 1024);
+            console.log("Screen size check: isMobile =", width < 768, "Viewport width =", width);
         };
 
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
 
-        return () => {
-            window.removeEventListener("resize", checkScreenSize);
-        }
+        return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
     // GSAP animation
     useEffect(() => {
+        console.log("GSAP useEffect triggered: isMobile=", isMobile, "currentIndex=", currentIndex, "slidesRef.current.length=", slidesRef.current.length);
         if (carouselRef.current && isMobile && slidesRef.current.length > 0 && !isAnimating.current) {
             isAnimating.current = true;
             try {
                 const slide = slidesRef.current[0];
-                const cardWidth = slide?.getBoundingClientRect().width || 392; // Rendered card width
-                const itemWidth = cardWidth; // Slide by card width only
+                const cardWidth = slide?.getBoundingClientRect().width || 392;
+                const itemWidth = cardWidth;
                 console.log(
-                    "Card width:",
-                    cardWidth,
-                    "Item width:",
-                    itemWidth,
-                    "Viewport width:",
-                    window.innerWidth,
-                    "Container width:",
-                    carouselRef.current.getBoundingClientRect().width
+                    "GSAP Animation: cardWidth=", cardWidth,
+                    "itemWidth=", itemWidth,
+                    "viewportWidth=", window.innerWidth,
+                    "containerWidth=", carouselRef.current.getBoundingClientRect().width
                 );
                 gsap.to(carouselRef.current, {
                     x: -currentIndex * itemWidth,
@@ -82,6 +79,7 @@ export default function ServicesSection() {
                     ease: "power2.out",
                     onComplete: () => {
                         isAnimating.current = false;
+                        console.log("GSAP animation completed: currentIndex=", currentIndex);
                     },
                 });
             } catch (error) {
@@ -94,24 +92,38 @@ export default function ServicesSection() {
     // Handle touch events
     const handleTouchStart = (e) => {
         touchStartX.current = e.touches[0].clientX;
+        console.log("Touch start: x=", touchStartX.current);
     };
 
     const handleTouchMove = (e) => {
-        if (touchStartX.current === null || isAnimating.current) return;
+        if (touchStartX.current === null || isAnimating.current) {
+            console.log("Touch move ignored: touchStartX=", touchStartX.current, "isAnimating=", isAnimating.current);
+            return;
+        }
 
         const currentTouch = e.touches[0].clientX;
         const diff = touchStartX.current - currentTouch;
+        console.log("Touch move: currentX=", currentTouch, "diff=", diff);
 
         if (diff > 50) {
-            setCurrentIndex((prev) => Math.min(prev + 1, services.length - 1));
+            setCurrentIndex((prev) => {
+                const newIndex = Math.min(prev + 1, services.length - 1);
+                console.log("Swipe right: newIndex=", newIndex);
+                return newIndex;
+            });
             touchStartX.current = null;
         } else if (diff < -50) {
-            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+            setCurrentIndex((prev) => {
+                const newIndex = Math.max(prev - 1, 0);
+                console.log("Swipe left: newIndex=", newIndex);
+                return newIndex;
+            });
             touchStartX.current = null;
         }
     };
 
     const handleTouchEnd = () => {
+        console.log("Touch end");
         touchStartX.current = null;
     };
 
@@ -213,14 +225,14 @@ export default function ServicesSection() {
                     <div className="relative">
                         <div
                             ref={carouselRef}
-                            className="flex overflow-x-hidden snap-x snap-mandatory hide-scrollbar"
+                            className="flex overflow-x-hidden hide-scrollbar"
                             onTouchStart={handleTouchStart}
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
                             style={{ scrollbarWidth: "none", msOverflowStyle: "none", willChange: "transform", WebkitOverflowScrolling: "touch" }}
                         >
                             {services.map((service, index) => (
-                                <div key={service.id} className="w-full flex-shrink-0 snap-center px-2">
+                                <div key={service.id} className="w-full flex-shrink-0 px-2" ref={(el) => (slidesRef.current[index] = el)}>
                                     <div
                                         className="relative overflow-hidden mx-auto"
                                         style={{

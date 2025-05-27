@@ -9,54 +9,54 @@ import useMobileDetector from "@/hooks/useMobileDetector"
 const services = [
     {
         title: "Business Website Design",
-        shortDescription: "Transform your brand with modern web design, UI/UX, mobile apps, and IT consulting.",
+        shortDescription: "Create professional, responsive websites to elevate your brand and engage your audience.",
         longDescription:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat nunc sapien, a ultrices magna rhoncus eget. Nullam id magna in eros facilisis ultricies ut quis nisi.",
+            "We design professional, responsive, and user-friendly business websites that effectively represent your brand online. Our websites are optimized for performance and built to engage your target audience.",
         image: service1,
         bgColor: "#F4F7FC",
         hoverColor: "#071856",
     },
     {
         title: "Mobile App Development",
-        shortDescription: "Transform your brand with modern web design, UI/UX, mobile apps, and IT consulting.",
+        shortDescription: "Build intuitive, scalable mobile apps for Android and iOS with exceptional user experience.",
         longDescription:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat nunc sapien, a ultrices magna rhoncus eget. Nullam id magna in eros facilisis ultricies ut quis nisi.",
+            "Our team develops robust and intuitive mobile applications for Android and iOS platforms. We prioritize functionality, user experience, and scalability to bring your app ideas to life.",
         image: service2,
         bgColor: "#EEF2E4",
         hoverColor: "#071856",
     },
     {
         title: "Server Provisioning",
-        shortDescription: "Transform your brand with modern web design, UI/UX, mobile apps, and IT consulting.",
+        shortDescription: "Secure, scalable server solutions for seamless website and application performance.",
         longDescription:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat nunc sapien, a ultrices magna rhoncus eget. Nullam id magna in eros facilisis ultricies ut quis nisi. Donec auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.",
+            "We provide secure and scalable server provisioning solutions to support your online infrastructure. Our services ensure your applications and websites run smoothly with minimal downtime.",
         image: service3,
         bgColor: "#E4E8E9",
         hoverColor: "#071856",
     },
     {
         title: "Enterprise/Web App Development",
-        shortDescription: "Transform your brand with modern web design, UI/UX, mobile apps, and IT consulting.",
+        shortDescription: "Develop secure, scalable enterprise web apps tailored to your business needs.",
         longDescription:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat nunc sapien, a ultrices magna rhoncus eget. Nullam id magna in eros facilisis ultricies ut quis nisi.",
+            "Meezak Technologies specializes in building scalable and secure enterprise-level web applications tailored to your business operations. We ensure seamless integration, performance, and user-centric designs.",
         image: service4,
         bgColor: "#E4E8E9",
         hoverColor: "#071856",
     },
     {
         title: "Game Solution",
-        shortDescription: "Transform your brand with modern web design, UI/UX, mobile apps, and IT consulting.",
+        shortDescription: "Craft immersive, high-quality gaming experiences from concept to deployment.",
         longDescription:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat nunc sapien, a ultrices magna rhoncus eget. Nullam id magna in eros facilisis ultricies ut quis nisi.",
+            "We offer comprehensive game development services, creating engaging and immersive gaming experiences. From concept to deployment, we bring your game ideas to reality with high-quality graphics and seamless functionality.",
         image: service5,
         bgColor: "#F4F7FC",
         hoverColor: "#071856",
     },
     {
         title: "Game Solution Website Design",
-        shortDescription: "Transform your brand with modern web design, UI/UX, mobile apps, and IT consulting.",
+        shortDescription: "Design engaging websites for game solutions with community and monetization features.",
         longDescription:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat nunc sapien, a ultrices magna rhoncus eget. Nullam id magna in eros facilisis ultricies ut quis nisi.",
+            "Our expertise extends to creating attractive and functional websites specifically for game solution. We build platforms that support game distribution, community engagement, and monetization.",
         image: service1,
         bgColor: "#EEF2E4",
         hoverColor: "#071856",
@@ -88,7 +88,7 @@ const ServiceCard = ({ title, shortDescription, longDescription, image, bgColor,
 
                 <div className="flex-1 flex flex-col justify-between text-start">
                     <p
-                        className={`text-sm mb-4 transition-colors duration-300 ${showHoveredState ? "text-white" : "text-[#071856]"}`}
+                        className={`text-sm text-justify mb-4 transition-colors duration-300 ${showHoveredState ? "text-white" : "text-[#071856]"}`}
                     >
                         {shortDescription}
                     </p>
@@ -96,7 +96,7 @@ const ServiceCard = ({ title, shortDescription, longDescription, image, bgColor,
                     {/* Always show long description on mobile, or when hovered on desktop */}
                     {showHoveredState && (
                         <div className={`${!isMobile && isHovered ? "animate-fadeIn" : ""}`}>
-                            <p className="text-sm leading-relaxed text-white">{longDescription}</p>
+                            <p className="text-sm leading-relaxed text-white text-justify">{longDescription}</p>
                         </div>
                     )}
                 </div>

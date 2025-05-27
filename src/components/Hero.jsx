@@ -64,9 +64,14 @@ function Hero() {
           </p>
 
           {/* CTA Button */}
-          <button className="bg-[rgba(204,90,113,1)] md:bg-white border border-[rgba(204,90,113,1)] md:text-[rgba(204,90,113,1)] px-14 py-2 rounded-md text-sm font-[600] hover:bg-white hover:text-blue-900">
+          <a
+            href="https://wa.me/34655781113?text=hi%20meezak%20technologies%20i%20want%20to%20make%20enquiries"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[rgba(204,90,113,1)] md:bg-white border border-[rgba(204,90,113,1)] md:text-[rgba(204,90,113,1)] px-14 py-2 rounded-md text-sm font-[600] hover:bg-white hover:text-blue-900 hover:border-blue-900"
+          >
             Get Started
-          </button>
+          </a>
         </div>
 
         {/* Image Section Wrapper */}

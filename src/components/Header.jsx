@@ -233,10 +233,15 @@ function Header() {
             Contact Us
           </Link>
         </nav>
-        <button className="w-[150px] lg:w-[180px] h-[48px] py-[10px] px-4 gap-6 rounded-[8px] bg-[rgba(7,24,86,1)] text-white text-sm font-[600] flex items-center justify-center hover:bg-blue-800">
+        <a
+          href="https://wa.me/34655781113?text=hi%20meezak%20technologies%20i%20want%20to%20make%20enquiries"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-[150px] lg:w-[180px] h-[48px] py-[10px] px-4 gap-6 rounded-[8px] bg-[rgba(7,24,86,1)] text-white text-sm font-[600] flex items-center justify-center hover:bg-blue-800"
+        >
           Get Started
           <img src={whatsappLogo || "/placeholder.svg"} alt="WhatsApp Logo" className="w-[23.82px] h-[24px]" />
-        </button>
+        </a>
       </div>
 
       {/* Mobile Header */}

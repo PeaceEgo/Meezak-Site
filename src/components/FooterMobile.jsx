@@ -148,12 +148,12 @@ function FooterMobile() {
             © 2025 Meezak Technologies Ltd. All rights reserved
           </p>
           <div className="flex space-x-2 mb-4">
-            <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">
+            <Link to="/terms" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">
               Terms of Service <span className="w-[4px] h-[4px] rounded-full bg-white inline-block mx-2"></span>
-            </a>
-            <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">
+            </Link>
+            <Link to="/privacy" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">
               Privacy Policy <span className="w-[4px] h-[4px] rounded-full bg-white inline-block mx-2"></span>
-            </a>
+            </Link>
             <a href="#" className="text-[12px] font-[400] text-[rgba(255,255,255,1)] hover:text-white">
               Cookies
             </a>

@@ -8,6 +8,8 @@ import OurWork from "./pages/OurWorks";
 import OurTeam from "./pages/OurTeam";
 import OurServices from "./pages/OurServicesPage";
 import ScrollToTop from "./components/ScrollToTop";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="works" element={<OurWork />} />
           <Route path="ourTeam" element={<OurTeam />} />
           <Route path="services" element={<OurServices />} />
+          <Route path="terms" element={<TermsOfService />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
         </Route>
       </Routes>
     </Router>

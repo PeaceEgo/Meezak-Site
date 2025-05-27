@@ -160,12 +160,12 @@ function FooterDesktop() {
             © 2025 Meezak Technologies Ltd. All rights reserved
           </p>
           <div className="flex space-x-4">
-            <a href="#" className="text-sm md:text[12px] font[700] text-[rgba(255,255,255,1)] hover:text-white">
+            <Link to="/terms" className="text-sm md:text[12px] font[700] text-[rgba(255,255,255,1)] hover:text-white">
               Terms of Service
-            </a>
-            <a href="#" className="text-sm md:text[12px] font[700] text-[rgba(255,255,255,1)] hover:text-white">
+            </Link>
+            <Link to="/privacy" className="text-sm md:text[12px] font[700] text-[rgba(255,255,255,1)] hover:text-white">
               Privacy Policy
-            </a>
+            </Link>
             <a href="#" className="text-sm md:text[12px] font[700] text-[rgba(255,255,255,1)] hover:text-white">
               Cookies
             </a>

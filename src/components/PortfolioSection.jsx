@@ -1,38 +1,56 @@
 import { useState, useEffect } from "react";
 
 // Import images
-import eCommerceImage1 from "../assets/images/project-image.jpg";
-import eCommerceImage2 from "../assets/images/image4.png";
-import fintechImage1 from "../assets/images/image3.png";
+import eCommerceImage1 from "../assets/images/DCPMS.png";
+import eCommerceImage2 from "../assets/images/MERRY.png";
+import fintechImage1 from "../assets/images/temmy.jpeg";
 import fintechImage2 from "../assets/images/image2.png";
-import portfolioImage1 from "../assets/images/image1.png";
-import portfolioImage2 from "../assets/images/project-image.jpg";
+import portfolioImage1 from "../assets/images/MICHSAM.jpeg";
+import portfolioImage2 from "../assets/images/FIRSTWORK.png";
+import portfolioImage3 from "../assets/images/swash.png";
+import portfolioImage4 from "../assets/images/frisan.jpeg";
+import portfolioImage5 from "../assets/images/infotech.jpeg";
+import portfolioImage6 from "../assets/images/maicon.jpeg";
 
 // Project data for each category
 const eCommerceProjects = [
   {
     id: 1,
-    title: "TradeFlair Limited",
+    title: "DPCMS",
     description: "e-Commerce Website Development for a product and service rendering company in Lagos State, Nigeria.",
     tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: eCommerceImage1,
+    websiteUrl: "http://destinypromoterscooperative.com/"
+    
+
+
   },
   {
     id: 2,
-    title: "TradeFlair Limited",
-    description: "e-Commerce Website Development for a product and service rendering company in Lagos State, Nigeria.",
+    title: "Merry Ventures",
+    description: "Savings Website Development for a service rendering company",
     tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: eCommerceImage2,
+    websiteUrl: "https://noblemerrycompany.com"
+  },
+  {
+    id: 10,
+    title: "Peak Infotech Systems",
+    description: "An electronics company website for an electronics wholesales company",
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
+    image: portfolioImage5,
+    websiteUrl: "https://peakinfotech.com"
   },
 ];
 
 const fintechProjects = [
   {
     id: 3,
-    title: "Fintech Solution Co.",
+    title: "Temmy Vicky Global",
     description: "Fintech platform development for a financial services company in Lagos State, Nigeria.",
     tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: fintechImage1,
+    websiteUrl: "https://temmyvicky.com"
   },
   {
     id: 4,
@@ -40,23 +58,50 @@ const fintechProjects = [
     description: "Fintech platform development for a financial services company in Lagos State, Nigeria.",
     tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: fintechImage2,
+    websiteUrl: "https://fintechsolution.com"
   },
 ];
 
 const portfolioProjects = [
   {
     id: 5,
-    title: "Portfolio Showcase",
-    description: "Portfolio website for a creative agency in Lagos State, Nigeria.",
+    title: "MichSam Poultry",
+    description: "Poultry website for a farming company.",
     tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: portfolioImage1,
+    websiteUrl: "https://michsampoultry.com"
   },
   {
     id: 6,
-    title: "Portfolio Showcase",
-    description: "Portfolio website for a creative agency in Lagos State, Nigeria.",
+    title: "First Work",
+    description: "Employment website for a creative agency in Ontario, Canada.",
     tags: ["Visit Website", "UI/UX Design", "SEO"],
     image: portfolioImage2,
+    websiteUrl: "https://firstwork.org"
+  },
+  {
+    id: 7,
+    title: "Swash Digital",
+    description: "An IT solutons company website for a creative agency in Calgary, Canada.",
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
+    image: portfolioImage3,
+    websiteUrl: "https://swashdigital.ca"
+  },
+  {
+    id: 8,
+    title: "Frisan Farms",
+    description: "A farming company website for a creative agency",
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
+    image: portfolioImage4,
+    websiteUrl: "https://frisanfarms.com"
+  },
+  {
+    id: 9,
+    title: "Maicon Hotels",
+    description: "A hotel website for an hospitality company",
+    tags: ["Visit Website", "UI/UX Design", "SEO"],
+    image: portfolioImage6,
+    websiteUrl: "https://maiconhotels.com"
   },
 ];
 
@@ -121,7 +166,7 @@ export default function PortfolioSection() {
               : "max-w-[618px] h-[52px] flex gap-6 justify-start"
           }
         >
-          {["ALL", "eCommerce", "Fintech", "Portfolio"].map((filter) => (
+          {["ALL", "eCommerce", "Fintech", "Others"].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
@@ -182,6 +227,7 @@ export default function PortfolioSection() {
                             {project.tags.map((tag, index) => (
                               <button
                                 key={index}
+                                onClick={() => index === 0 && project.websiteUrl ? window.open(project.websiteUrl, '_blank') : null}
                                 className={
                                   isMobile
                                     ? index === 0
@@ -247,6 +293,7 @@ export default function PortfolioSection() {
                             {project.tags.map((tag, index) => (
                               <button
                                 key={index}
+                                onClick={() => index === 0 && project.websiteUrl ? window.open(project.websiteUrl, '_blank') : null}
                                 className={
                                   index === 0
                                     ? "w-[310px] h-[42px] rounded border-none py-[10px] px-2 font-outfit font-semibold text-[14px] leading-[22px] tracking-[0%]"

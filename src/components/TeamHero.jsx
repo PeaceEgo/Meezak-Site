@@ -1,17 +1,16 @@
 
 import { useState } from "react"
-// import { Link } from "react-router-dom"
-import heroImage from "../assets/images/office.svg"
+import heroImage from "../assets/workSpace3.jpeg"
 import CTAButton from "./CtaButton"
 
 const OurTeamSection = () => {
     const [isHovered, setIsHovered] = useState(false)
 
     return (
-        <section className="bg-white py-0 overflow-hidden">
+        <section className="bg-white py-0 overflow-hidden md:pt-16 pt-16">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mt-16">
                 {/* Team Image */}
-                <div className="mb-8 rounded-lg overflow-hidden shadow-lg  mx-auto w-[342px] h-[174px] sm:w-full sm:h-auto">
+                <div className="mb-8 rounded-lg overflow-hidden shadow-lg  mx-auto w-[342px] h-[174px] md:h-[218px] sm:w-full sm:h-auto">
                     <img
                         src={heroImage || "/placeholder.svg"}
                         alt="Our team working in a modern office space"
